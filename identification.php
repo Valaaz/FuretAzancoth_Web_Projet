@@ -30,7 +30,8 @@ if (isset($_POST['url']))
         <input type="text" value="" name="utilisateur"> </br>
         <label>Mot de passe</label> </br>
         <input type="text" value="" name="mdp"> </br> </br>
-        <input type="submit" value="Validez" name="valider">
+        <input type="submit" value="Validez" name="valider"> <br>
+        <a href="creercompte.php"> Créer un compte </a>
     </form>
 </body>
 
