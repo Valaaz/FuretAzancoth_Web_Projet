@@ -7,11 +7,11 @@ if (isset($_POST['valider'])) {
             if (isset($_GET['target']))
                 header('Location:' . $_GET["target"]);
             else
-                header('Location:accueil.php');
+                header('Location:accueil.html');
         }
 }
 if (isset($_SESSION["isLogged"]))
-    header('Location:accueil.php');
+    header('Location:accueil.html');
 
 if (isset($_POST['url']))
     echo 'Vous devez vous connecter si vous voulez accéder à cette page :';
