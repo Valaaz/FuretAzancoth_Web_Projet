@@ -9,10 +9,11 @@
 <body>
     <header>
         <a href="redaction.php" target="_blank"> Rédacteur </a> <br>
-        <a href="identification.php" target="_blank"> Se connecter </a>
+        <a href="identification.php" target="_blank"> Se connecter </a> <br>
+        <a href="deconnexion.php"> Se déconnecter </a>
     </header>
 
-    <h1>Accueil</h1>
+    <h1>Bienvenue à l'accueil</h1>
 
     <article>Article</article>
 </body>
