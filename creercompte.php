@@ -2,7 +2,7 @@
 session_start();
 if (isset($_POST['user']) && isset($_SESSION['mdp'])) {
     $bSoumis = 1;
-    header('identification.php');
+    header('creercompte.php');
     if ($_POST['user'] == 'valaz' && $_POST['mdp'] == 'secret') {
         $_SESSION['isLogged'] = true;
         if (isset($_GET['target'])) {
@@ -13,7 +13,7 @@ if (isset($_POST['user']) && isset($_SESSION['mdp'])) {
     }
 }
 if (isset($_SESSION["isLogged"]))
-    header('Location:accueil.php');
+    header('Location:index.php');
 
 if (isset($_POST['url']))
     echo 'Pour accéder à cette page il est nécessaire de se connecter avec votre identifiant :';
@@ -22,12 +22,12 @@ if (isset($_POST['url']))
 <html>
 
 <head>
-    <title>Identification</title>
+    <title>Création de compte</title>
 </head>
 
 <body>
-    <form method="post" action="identification.php">
-        <h1>Pour accéder à cette page il est nécessaire de se connecter avec votre identifiant</h1>
+    <form method="post" action="creercompte.php">
+        <h1>Créer un compte</h1>
         <label>Identifiant</label> </br>
         <input type="text" value="" name="user"> </br>
         <label>Mot de passe</label> </br>
