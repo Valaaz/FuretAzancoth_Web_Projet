@@ -18,8 +18,8 @@ $err_connexion = array();
 if (isset($_POST['valider'])) {
     if (!empty($_POST['utilisateur']) && !empty($_POST['mdp'])) {
         // requete : username existe ?
-        $pdostat = $objPdo->prepare("SELECT adressemail, motdepasse FROM redacteur WHERE adressemail = :adressemail");
-        $pdostat->bindvalue(':adressemail', $_POST['utilisateur'], PDO::PARAM_STR);
+        $pdostat = $objPdo->prepare("SELECT pseudo, motdepasse FROM redacteur WHERE pseudo = :pseudo");
+        $pdostat->bindvalue(':pseudo', $_POST['utilisateur'], PDO::PARAM_STR);
         $pdostat->execute();
         if ($pdostat->rowCount() > 0) // username OK
         {
