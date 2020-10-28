@@ -41,35 +41,31 @@ if (isset($_POST['valider'])) {
             $prenom = $_POST['prenom'];
             $pseudo = $_POST['pseudo'];
             $mail = $_POST['mail'];
-            $mdp = $_POST['mdp'];
+            $mdp = crypt(htmlentities($_POST['mdp']), '$2a$07$usesomesillystringforsalt');
 
             // INSERT en bdd
             $pdostat = $objPdo->prepare("INSERT INTO `redacteur`(`nom`, `prenom`, `pseudo`, `adressemail`, `motdepasse`) VALUES(:nom, :prenom, :pseudo, :mail, :mdp);");
             $pdostat->bindvalue(':pseudo', $pseudo, PDO::PARAM_STR);
-            $pdostat->bindvalue(':mdp', crypt(htmlentities($mdp), '$2a$07$usesomesillystringforsalt'), PDO::PARAM_STR);
+            $pdostat->bindvalue(':mdp', $mdp, PDO::PARAM_STR);
             $pdostat->bindvalue(':nom', $nom, PDO::PARAM_STR);
             $pdostat->bindvalue(':prenom', $prenom, PDO::PARAM_STR);
             $pdostat->bindvalue(':mail', $mail, PDO::PARAM_STR);
 
-            var_dump($pdostat);
-
-            $pdostat->execute();
-
-            var_dump($pdostat);
-
-            // Mise en SESSION
-            $_SESSION['isLogged'] = true;
-
-
-            foreach ($pdostat as $row) {
-                $_SESSION['pseudo'] = $row['pseudo'];
-                break;
-            }
-
-            // ATTENTION ! ON NE MET JAMAIS LE MOT DE PASSE EN SESSION !!
-            // on redirige vers l'espace membre
-            //header('location:accueil.html');
-            exit();
+			if(!$pdostat->execute()){ // Si le résultat de la requête est faux ou null, c'est qu'il y a eu un problème
+				$err_inscription[] = 'Erreur MySQL.';
+			}
+			else{
+				if (session_id() == "") // Si l'id de session est vide, c'est que la session n'est pas démarée
+					session_start();
+				// Mise en SESSION
+				$_SESSION['isLogged'] = true;
+				$_SESSION['pseudo'] = $pseudo;
+				
+				// ATTENTION ! ON NE MET JAMAIS LE MOT DE PASSE EN SESSION !!
+				// on redirige vers l'espace membre
+				header('location:accueil.html');
+				exit();
+			}
         } else {
             $err_inscription[] = 'Les deux mots de passe sont différents.';
         }
