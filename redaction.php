@@ -1,11 +1,12 @@
 <?php
+include 'connexion.php';
 
 $pdostat = $objPdo->prepare("INSERT INTO `news`(`titrenews`, `textenews`) VALUES(:titrenews, :textenews);");
 $pdostat->bindvalue(':titrenews', $titrenews, PDO::PARAM_STR);
 $pdostat->bindvalue(':textenews', $textenews, PDO::PARAM_STR);
 if (!$pdostat->execute()) { // Si le résultat de la requête est faux ou null, c'est qu'il y a eu un problème
                 $err_inscription[] = 'Erreur MySQL.';
-
+}
 ?>
 <html>
 
@@ -26,7 +27,7 @@ if (!$pdostat->execute()) { // Si le résultat de la requête est faux ou null, 
             <option value=''></option>
 
             <?php
-            include 'connexion.php';
+           
 
             $query = $objPdo->prepare("SELECT * FROM theme");
             $query->execute();
@@ -37,7 +38,8 @@ if (!$pdostat->execute()) { // Si le résultat de la requête est faux ou null, 
         </select> </br>
 
         <label>Contenu</label> </br>
-        <input type="text" value="" name="contenu"> </br>
+        <textarea name="contenu" id="contenu" rows="40" cols="100"> </textarea> </br>
+		
 
         <input type="submit" value="Validez" name="valider">
     </form>
