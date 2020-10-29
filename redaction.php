@@ -12,7 +12,6 @@
         <input type="text" value="" name="titre"> </br>
 
         <label>Thème</label> </br>
-        <input type="text" value="" name="theme"> </br>
 
         <select name='material'>
             <option value=''></option>
@@ -26,7 +25,7 @@
                 echo '<option value="' . $row['description'] . '">' . $row['description'] . '</option>';
             }
             ?>
-        </select>
+        </select> </br>
 
         <label>Contenu</label> </br>
         <input type="text" value="" name="contenu"> </br>
