@@ -5,4 +5,4 @@ if (isset($_SESSION['isLogged'])) {
     session_unset();
     session_destroy();
 }
-header('Location:accueil.html');
+header('Location:accueil.php');

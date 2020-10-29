@@ -9,9 +9,19 @@
 <body>
     <header>
         <a href="redaction.php" target="_blank"> Redacteur </a> <br>
-        <a href="identification.php"> Se connecter </a> <br>
         <a href="creercompte.php"> Creer un compte </a> <br>
-        <a href="#" onclick="MessageAlerte()"> Se deconnecter </a>
+        <?php
+        session_start();
+        $co = array();
+
+        if (isset($_SESSION['isLogged'])) {
+            $co = '<a href="#" onclick="MessageAlerte()"> Se deconnecter </a>';
+            echo $co;
+        } else if (isset($_SESSION['isLogged']) == false) {
+            $co = '<a href="identification.php"> Se connecter </a> <br>';
+            echo $co;
+        }
+        ?>
     </header>
 
     <h1>Bienvenue a l'accueil</h1>

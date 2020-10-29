@@ -51,21 +51,20 @@ if (isset($_POST['valider'])) {
             $pdostat->bindvalue(':prenom', $prenom, PDO::PARAM_STR);
             $pdostat->bindvalue(':mail', $mail, PDO::PARAM_STR);
 
-			if(!$pdostat->execute()){ // Si le résultat de la requête est faux ou null, c'est qu'il y a eu un problème
-				$err_inscription[] = 'Erreur MySQL.';
-			}
-			else{
-				if (session_id() == "") // Si l'id de session est vide, c'est que la session n'est pas démarée
-					session_start();
-				// Mise en SESSION
-				$_SESSION['isLogged'] = true;
-				$_SESSION['pseudo'] = $pseudo;
-				
-				// ATTENTION ! ON NE MET JAMAIS LE MOT DE PASSE EN SESSION !!
-				// on redirige vers l'espace membre
-				header('location:accueil.html');
-				exit();
-			}
+            if (!$pdostat->execute()) { // Si le résultat de la requête est faux ou null, c'est qu'il y a eu un problème
+                $err_inscription[] = 'Erreur MySQL.';
+            } else {
+                if (session_id() == "") // Si l'id de session est vide, c'est que la session n'est pas démarée
+                    session_start();
+                // Mise en SESSION
+                $_SESSION['isLogged'] = true;
+                $_SESSION['pseudo'] = $pseudo;
+
+                // ATTENTION ! ON NE MET JAMAIS LE MOT DE PASSE EN SESSION !!
+                // on redirige vers l'espace membre
+                header('location:accueil.php');
+                exit();
+            }
         } else {
             $err_inscription[] = 'Les deux mots de passe sont différents.';
         }

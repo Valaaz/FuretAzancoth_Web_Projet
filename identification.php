@@ -33,7 +33,7 @@ if (isset($_POST['valider'])) {
                 $err_connexion[] = 'Connecté';
                 // ATTENTION ! ON NE MET JAMAIS LE MOT DE PASSE EN SESSION !!
                 // on redirige vers l'espace membre
-                header('location:accueil.html');
+                header('location:accueil.php');
                 exit();
             } else {
                 $err_connexion[] = 'erreur : mot de passe : ' . $_POST['mdp'];
@@ -60,11 +60,11 @@ if (isset($_POST["utilisateur"]) and isset($_POST["mdp"])) {
             if (isset($_GET['target']))
                 header('Location:' . $_GET["target"]);
             else
-                header('Location:accueil.html');
+                header('Location:accueil.php');
         }*/
 //}
 if (isset($_SESSION["isLogged"]))
-    header('Location:accueil.html');
+    header('Location:accueil.php');
 
 /*if (isset($_POST['url']))
     echo 'Vous devez vous connecter si vous voulez accéder à cette page :';*/
