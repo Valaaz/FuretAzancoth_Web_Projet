@@ -15,7 +15,7 @@
         <input type="text" value="" name="titre"> </br>
 
         <label>Thème</label> </br>
-        <input type="text" value="" name="thème"> </br>
+        <input type="text" value="" name="theme"> </br>
 
         <label>Contenu</label> </br>
         <input type="text" value="" name="contenu"> </br>
