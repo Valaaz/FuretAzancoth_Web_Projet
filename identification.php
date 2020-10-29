@@ -17,22 +17,27 @@ session_start();
 $err_connexion = array();
 if (isset($_POST['valider'])) {
     if (!empty($_POST['utilisateur']) && !empty($_POST['mdp'])) {
-        // requete : username existe ?
+        // Pseudo
         $pdostat = $objPdo->prepare("SELECT pseudo, motdepasse FROM redacteur WHERE pseudo = :pseudo");
         $pdostat->bindvalue(':pseudo', $_POST['utilisateur'], PDO::PARAM_STR);
         $pdostat->execute();
-        if ($pdostat->rowCount() > 0) // username OK
+        // Mail
+        $pdostat2 = $objPdo->prepare("SELECT adressemail, motdepasse FROM redacteur WHERE adressemail = :mail");
+        $pdostat2->bindvalue(':mail', $_POST['utilisateur'], PDO::PARAM_STR);
+        $pdostat2->execute();
+
+        if ($pdostat->rowCount() > 0 || $pdostat2->rowCount() > 0) // username OK
         {
             $row = $pdostat->fetch();
-            // on compare le mot de passe entré avec celui enregistré en bdd
-            if (password_verify($_POST['mdp'], $row['motdepasse'])) // pwd OK
+            $row2 = $pdostat2->fetch();
+            // On compare le mot de passe entré avec celui de la bdd
+            if (password_verify($_POST['mdp'], $row['motdepasse']) || password_verify($_POST['mdp'], $row2['motdepasse'])) // pwd OK
             {
-                // Mise en SESSION
+                // Mise en session
                 $_SESSION['isLogged'] = true;
                 $_SESSION['adressemail'] = $row['adressemail'];
                 $err_connexion[] = 'Connecté';
-                // ATTENTION ! ON NE MET JAMAIS LE MOT DE PASSE EN SESSION !!
-                // on redirige vers l'espace membre
+                // On renvoie a l'accueil
                 header('location:accueil.php');
                 exit();
             } else {
@@ -63,9 +68,10 @@ if (isset($_POST["utilisateur"]) and isset($_POST["mdp"])) {
                 header('Location:accueil.php');
         }*/
 //}
+/*
 if (isset($_SESSION["isLogged"]))
     header('Location:accueil.php');
-
+*/
 /*if (isset($_POST['url']))
     echo 'Vous devez vous connecter si vous voulez accéder à cette page :';*/
 ?>
