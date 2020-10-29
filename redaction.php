@@ -1,3 +1,12 @@
+<?php
+
+$pdostat = $objPdo->prepare("INSERT INTO `news`(`titrenews`, `textenews`) VALUES(:titrenews, :textenews);");
+$pdostat->bindvalue(':titrenews', $titrenews, PDO::PARAM_STR);
+$pdostat->bindvalue(':textenews', $textenews, PDO::PARAM_STR);
+if (!$pdostat->execute()) { // Si le résultat de la requête est faux ou null, c'est qu'il y a eu un problème
+                $err_inscription[] = 'Erreur MySQL.';
+
+?>
 <html>
 
 <head>
