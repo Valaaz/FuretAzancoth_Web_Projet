@@ -11,16 +11,15 @@
         <?php
         session_start();
         $co = array();
-		$re = array();
+        $re = array();
         if (isset($_SESSION['isLogged'])) {
             $co = '<a href="#" onclick="MessageAlerte()"> Se deconnecter </a> <br>';
             echo $co;
             echo '<a href="redaction.php" target="_blank"> Redacteur </a> <br>';
         } else if (isset($_SESSION['isLogged']) == false) {
             $co = '<a href="identification.php"> Se connecter </a> <br>';
-			$re = '<a href="creercompte.php"> Creer un compte </a> <br>';
+            echo '<a href="creercompte.php"> Creer un compte </a> <br>';
             echo $co;
-			echo $re;
         }
         ?>
     </header>

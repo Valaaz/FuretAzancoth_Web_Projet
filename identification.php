@@ -1,18 +1,7 @@
 <?php
 include 'connexion.php';
 
-/*
-$result = $objPdo->query('SELECT * FROM redacteur');
-while ($row = $result->fetch()) {
-    if ($row['adressemail'] == $row['motdepasse'])
-        echo 'Hehe';
-}
-$id = $objPdo->query('SELECT adressemail FROM redacteur WHERE idredacteur = 1');
-$mdp = $objPdo->query('SELECT motdepasse FROM redacteur WHERE idredacteur = 1');
-*/
-
 session_start();
-
 
 $err_connexion = array();
 if (isset($_POST['valider'])) {
