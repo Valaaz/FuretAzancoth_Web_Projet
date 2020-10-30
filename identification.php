@@ -7,11 +7,11 @@ $err_connexion = array();
 if (isset($_POST['valider'])) {
     if (!empty($_POST['utilisateur']) && !empty($_POST['mdp'])) {
         // Pseudo
-        $pdostat = $objPdo->prepare("SELECT pseudo, motdepasse FROM redacteur WHERE pseudo = :pseudo");
+        $pdostat = $objPdo->prepare("SELECT * FROM redacteur WHERE pseudo = :pseudo");
         $pdostat->bindvalue(':pseudo', $_POST['utilisateur'], PDO::PARAM_STR);
         $pdostat->execute();
         // Mail
-        $pdostat2 = $objPdo->prepare("SELECT adressemail, motdepasse FROM redacteur WHERE adressemail = :mail");
+        $pdostat2 = $objPdo->prepare("SELECT * FROM redacteur WHERE adressemail = :mail");
         $pdostat2->bindvalue(':mail', $_POST['utilisateur'], PDO::PARAM_STR);
         $pdostat2->execute();
 
@@ -24,7 +24,13 @@ if (isset($_POST['valider'])) {
             {
                 // Mise en session
                 $_SESSION['isLogged'] = true;
-                $_SESSION['adressemail'] = $row['adressemail'];
+                if ($_POST['utilisateur'] == $row['pseudo']) {
+                    $_SESSION['pseudo'] = $row['pseudo'];
+                    $_SESSION['id'] = $row['idredacteur'];
+                } else {
+                    $_SESSION['pseudo'] = $row2['pseudo'];
+                    $_SESSION['id'] = $row2['idredacteur'];
+                }
                 $err_connexion[] = 'Connecté';
                 // On renvoie a l'accueil
                 header('location:accueil.php');
