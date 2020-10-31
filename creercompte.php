@@ -25,10 +25,10 @@ if (isset($_POST['valider'])) {
         if ($ok == true) {
             if ($_POST['mdp'] == $_POST['mdp2']) {
 
-                $nom = $_POST['nom'];
-                $prenom = $_POST['prenom'];
-                $pseudo = $_POST['pseudo'];
-                $mail = $_POST['mail'];
+                $nom = htmlentities($_POST['nom']);
+                $prenom = htmlentities($_POST['prenom']);
+                $pseudo = htmlentities($_POST['pseudo']);
+                $mail = htmlentities($_POST['mail']);
                 $mdp = crypt(htmlentities($_POST['mdp']), '$2a$07$usesomesillystringforsalt');
 
                 // INSERT en bdd
