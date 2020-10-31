@@ -8,7 +8,6 @@ if (isset($_POST['valider'])) {
     if (!empty($_POST['titre']) && !empty($_POST['choixtheme']) && !empty($_POST['contenu'])) {
 
         $titre = htmlentities($_POST['titre']);
-        //$creertheme = htmlentities($_POST['creer_theme']);
         $choixtheme = htmlentities($_POST['choixtheme']);
         $contenu = htmlentities($_POST['contenu']);
 
@@ -39,8 +38,8 @@ if (isset($_POST['valider'])) {
 </head>
 
 <body>
-<header>
-</header>
+    <header>
+    </header>
     <form method="post" action="redaction.php">
         <?php if (!empty($err_news)) { ?>
             <div class="error"><?php echo implode('<br/>', $err_news); ?></div>
@@ -70,4 +69,12 @@ if (isset($_POST['valider'])) {
         <input type="submit" value="Validez" name="valider">
     </form>
 </body>
+
+<script language=" javascript " type="text/javascript">
+    function CreerTheme() {
+        if (confirm("Voulez-vous créer un nouveau thème ?"))
+            window.location.href = "creertheme.php"
+    }
+</script>
+
 </html>
