@@ -18,6 +18,7 @@ if (isset($_POST['valider'])) {
         $pdostat->bindvalue(':contenu', $contenu, PDO::PARAM_STR);
         $pdostat->bindvalue(':redacteur', $_SESSION['id'], PDO::PARAM_INT);
 
+
         if (!$pdostat->execute()) { // Si le résultat de la requête est faux ou null, c'est qu'il y a eu un problème
             $err_news[] = 'Erreur MySQL.';
         } else {
@@ -57,11 +58,20 @@ if (isset($_POST['valider'])) {
             ?>
         </select> </br> </br>
 
+        <input type="button" value="Créer un nouveau thème" name="creertheme" onclick="CreerTheme()"> </br>
+
         <label>Contenu</label> </br>
         <textarea name="contenu" id="contenu" rows="40" cols="100"></textarea> </br>
 
         <input type="submit" value="Validez" name="valider">
     </form>
 </body>
+
+<script language=" javascript " type="text/javascript">
+    function CreerTheme() {
+        if (confirm("Voulez-vous créer un nouveau thème ?"))
+            window.location.href = "creertheme.php"
+    }
+</script>
 
 </html>
