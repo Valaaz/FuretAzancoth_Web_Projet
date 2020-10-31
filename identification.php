@@ -79,6 +79,8 @@ if (isset($_SESSION["isLogged"]))
 </head>
 
 <body>
+	<header>
+	</header>
     <form method="post" action="identification.php">
         <?php if (!empty($err_connexion)) { ?>
             <div class="error"><?php echo implode('<br/>', $err_connexion); ?></div>

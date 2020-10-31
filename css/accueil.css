@@ -1,5 +1,7 @@
 header {
-	float: right;
+	background-color: darkorange;
+	height: 50px;
+	text-align: right;
 }
 
 
@@ -12,4 +14,6 @@ footer {
 	right: 0;
 }
 
-
+body{
+	margin: 0;
+}

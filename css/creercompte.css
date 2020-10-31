@@ -5,6 +5,11 @@ form {
     width: 6em;
 }
 
+h1{
+	text-align: center;
+	margin-left: 40px;
+}
+
 header{
 	background-color: darkorange;
 	height: 50px;
