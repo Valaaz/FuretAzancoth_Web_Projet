@@ -35,6 +35,7 @@ if (isset($_POST['valider'])) {
 
 <head>
     <title>Rédaction</title>
+	<link rel="stylesheet" href="css/redaction.css" />
 </head>
 
 <body>
