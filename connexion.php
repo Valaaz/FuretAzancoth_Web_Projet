@@ -2,7 +2,7 @@
 $db_config = array();
 $db_config['SGBD'] = 'mysql';
 $db_config['HOST'] = 'localhost';
-$db_config['DB_NAME'] = 'azancoth1u_projetweb';
+$db_config['DB_NAME'] = 'furet3u_projetweb';
 $db_config['USER'] = 'root';
 $db_config['PASSWORD'] = 'root';
 try {

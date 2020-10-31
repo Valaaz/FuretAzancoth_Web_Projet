@@ -13,7 +13,7 @@ if (isset($_POST['valider'])) {
             $pdostat->bindvalue(':creertheme', $creertheme, PDO::PARAM_INT);
             $pdostat->bindvalue(':titre', $titre, PDO::PARAM_STR);
             $pdostat->bindvalue(':contenu', $contenu, PDO::PARAM_STR);
-            $pdostat->bindvalue(':redacteur', 5, PDO::PARAM_INT);
+            $pdostat->bindvalue(':redacteur', $_SESSION['id'], PDO::PARAM_INT);
             $err_news[] = 'Coucou';
             header('location:redaction.php');
         } else {
@@ -44,9 +44,6 @@ if (isset($_POST['valider'])) {
         <h1>Créer une news</h1>
         <label>Titre</label> </br>
         <input type="text" value="" name="titre"> </br>
-
-        <label>Thème</label> </br>
-        <input type="text" value="" name="creer_theme"> </br> </br>
 
         <label>Choisir un thème</label> </br>
         <select name='material'>
