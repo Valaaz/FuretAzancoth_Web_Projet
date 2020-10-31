@@ -75,16 +75,17 @@ if (isset($_SESSION["isLogged"]))
 
 <head>
     <title>Identification</title>
-	<link rel="stylesheet" href="css/identification.css" />
 </head>
 
 <body>
+	<header>
+	</header>
     <form method="post" action="identification.php">
         <?php if (!empty($err_connexion)) { ?>
             <div class="error"><?php echo implode('<br/>', $err_connexion); ?></div>
         <?php     } ?>
-        
-		<label>Identifiant</label> </br>
+        <h1>Pour accéder à cette page il est nécessaire de se connecter avec votre identifiant</h1>
+        <label>Identifiant</label> </br>
         <input type="text" value="" name="utilisateur"> </br>
         <label>Mot de passe</label> </br>
         <input type="text" value="" name="mdp"> </br> </br>

@@ -30,6 +30,7 @@ if (isset($_POST['valider'])) {
     }
 }
 ?>
+
 <html>
 
 <head>
@@ -37,6 +38,8 @@ if (isset($_POST['valider'])) {
 </head>
 
 <body>
+<header>
+</header>
     <form method="post" action="redaction.php">
         <?php if (!empty($err_news)) { ?>
             <div class="error"><?php echo implode('<br/>', $err_news); ?></div>

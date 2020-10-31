@@ -65,9 +65,12 @@ if (isset($_POST['valider'])) {
 
 <head>
     <title>Création de compte</title>
+	<link rel="stylesheet" href="css/creercompte.css" />
 </head>
 
 <body>
+	<header>
+	</header>
     <form method="post" action="creercompte.php">
         <?php if (!empty($err_inscription)) { ?>
             <div class="error"><?php echo implode('<br/>', $err_inscription); ?></div>
