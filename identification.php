@@ -25,11 +25,13 @@ if (isset($_POST['valider'])) {
                 // Mise en session
                 $_SESSION['isLogged'] = true;
                 if ($_POST['utilisateur'] == $row['pseudo']) {
-                    $_SESSION['pseudo'] = $row['pseudo'];
                     $_SESSION['id'] = $row['idredacteur'];
+                    $_SESSION['pseudo'] = $row['pseudo'];
+                    $_SESSION['mail'] = $row['adressemail'];
                 } else {
-                    $_SESSION['pseudo'] = $row2['pseudo'];
                     $_SESSION['id'] = $row2['idredacteur'];
+                    $_SESSION['pseudo'] = $row2['pseudo'];
+                    $_SESSION['mail'] = $row2['adressemail'];
                 }
                 $err_connexion[] = 'Connecté';
                 // On renvoie a l'accueil
@@ -75,12 +77,12 @@ if (isset($_SESSION["isLogged"]))
 
 <head>
     <title>Identification</title>
-	<link rel="stylesheet" href="css/identification.css" />
+    <link rel="stylesheet" href="css/identification.css" />
 </head>
 
 <body>
-	<header>
-	</header>
+    <header>
+    </header>
     <form method="post" action="identification.php">
         <?php if (!empty($err_connexion)) { ?>
             <div class="error"><?php echo implode('<br/>', $err_connexion); ?></div>

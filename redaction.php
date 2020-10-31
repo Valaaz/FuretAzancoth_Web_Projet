@@ -34,7 +34,7 @@ if (isset($_POST['valider'])) {
 
 <head>
     <title>Rédaction</title>
-	<link rel="stylesheet" href="css/redaction.css" />
+    <link rel="stylesheet" href="css/redaction.css" />
 </head>
 
 <body>
@@ -66,14 +66,20 @@ if (isset($_POST['valider'])) {
         <label>Contenu</label> </br>
         <textarea name="contenu" id="contenu" rows="40" cols="100"></textarea> </br>
 
-        <input type="submit" value="Validez" name="valider">
+        <input type="submit" value="Validez" name="valider"> </br>
+        <input type="button" value="Retour" name="annuler" onclick="Annuler()"> </br>
     </form>
 </body>
 
-<script language=" javascript " type="text/javascript">
+<script language="javascript" type="text/javascript">
     function CreerTheme() {
         if (confirm("Voulez-vous créer un nouveau thème ?"))
             window.location.href = "creertheme.php"
+    }
+
+    function Annuler() {
+        if (confirm("Souhaitez-vous vous annuler la rédaction en cours ?"))
+            window.location.href = "accueil.php"
     }
 </script>
 

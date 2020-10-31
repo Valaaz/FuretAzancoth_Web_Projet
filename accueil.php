@@ -19,8 +19,8 @@
             echo '<a href="redaction.php" target="_blank"> Redacteur </a> <br>';
             // Affichage du pseudo de l'utilisateur connecté
             echo 'Connecté : ' . $_SESSION['pseudo'] . '<br>';
-            // Affichage de l'id de l'utilisateur connecté
-            echo 'Connecté : ' . $_SESSION['id'];
+            // Affichage du mail de l'utilisateur connecté
+            echo 'Mail : ' . $_SESSION['mail'];
         } else if (isset($_SESSION['isLogged']) == false) {
             $co = '<a href="identification.php"> Se connecter </a> <br>';
             echo '<a href="creercompte.php"> Creer un compte </a> <br>';
@@ -29,12 +29,12 @@
         ?>
     </header>
 
-    <h1>Bienvenue a l'accueil</h1>
+    <h1>Bienvenue à l'accueil</h1>
 
     <article>Article</article>
 </body>
 
-<script language=" javascript " type="text/javascript">
+<script language="javascript" type="text/javascript">
     function MessageAlerte() {
         if (confirm("Souhaitez-vous vous deconnecter ?"))
             window.location.href = "deconnexion.php"
