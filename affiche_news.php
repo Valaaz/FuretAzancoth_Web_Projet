@@ -1,12 +1,12 @@
 <?php
 include 'connexion.php';
-
-session_start();
-$query = $objPdo->prepare("SELECT * FROM news WHERE idnews = 1");
+$query = $objPdo->prepare("SELECT * FROM news WHERE idnews = :idnews");
+$query->bindValue(':idnews', $_SESSION['idnews'], PDO::PARAM_INT);
 $query->execute();
 
 // Partie theme
-$querytheme = $objPdo->prepare("SELECT idtheme FROM news WHERE idnews = 1");
+$querytheme = $objPdo->prepare("SELECT idtheme FROM news WHERE idnews = :idnews");
+$querytheme->bindValue(':idnews', $_SESSION['idnews'], PDO::PARAM_INT);
 $idtheme = $querytheme->execute();
 
 $resulttheme = $objPdo->prepare("SELECT description FROM theme WHERE idtheme = :idtheme");
@@ -32,8 +32,7 @@ while ($row3 = $resultredac->fetch())
     <article>
         <?php
         while ($row = $query->fetch()) {
-            echo '<h1>Date :</h1>';
-            echo $row['datenews'] . '<br>';
+            echo 'Rédigé le ' . $row['datenews'] . ' par ';
 
             echo '<h1>Thème :</h1>';
             echo  $theme . '<br>';
@@ -43,9 +42,6 @@ while ($row3 = $resultredac->fetch())
 
             echo '<h1>News :</h1>';
             echo $row['textenews'] . '<br>';
-
-            echo '<h1>Rédigé par : </h1>';
-            //echo $redacteur . '<br>';
         }
         ?>
     </article>

@@ -31,7 +31,24 @@
 
     <h1>Bienvenue à l'accueil</h1>
 
-    <article>Article</article>
+    <?php
+    include 'connexion.php';
+    $id = 1;
+
+    $query = $objPdo->prepare("SELECT * FROM news WHERE idnews = :id");
+    $query->bindvalue(':id', $id, PDO::PARAM_INT);
+    $query->execute();
+
+    $maxnews = "SELECT COUNT(*) FROM news";
+    $max = $objPdo->query($maxnews);
+
+    for ($id; $id <= 2; $id++) {
+        $_SESSION['idnews'] = $id;
+        echo '<article>';
+        include 'affiche_news.php';
+        echo '</article>' . '</br>';
+    }
+    ?>
 </body>
 
 <script language="javascript" type="text/javascript">
