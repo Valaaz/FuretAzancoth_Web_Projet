@@ -46,7 +46,7 @@
         $_SESSION['idnews'] = $id;
         echo '<article>';
         include 'affiche_news.php';
-        echo '</article>' . '</br>';
+        echo '</article>' . '</br> </br>';
     }
     ?>
 </body>
