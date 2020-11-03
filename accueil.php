@@ -76,6 +76,16 @@
                     echo '</article>' . '</br> </br>';
                 }
             }
+        } else {
+            $maxnews = $objPdo->prepare("SELECT * FROM news");
+            $maxnews->execute();
+
+            foreach ($maxnews as $row) {
+                $_SESSION['idnews'] = $row['idnews'];
+                echo '<article>';
+                include 'affiche_news.php';
+                echo '</article>' . '</br> </br>';
+            }
         }
         ?>
     </form>
