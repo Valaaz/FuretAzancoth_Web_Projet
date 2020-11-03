@@ -30,38 +30,48 @@
         ?>
     </header>
 
-    <h1>Bienvenue à l'accueil</h1>
+    <form method="POST">
+        <h1>Bienvenue à l'accueil</h1>
 
-    <label>Trier par thème</label> </br>
-    <select name="themetri">
-        <option value='0'>Tous</option>
+        <label>Trier par thème</label> </br>
+        <select name="themetri">
+            <option value='0'>Tous</option>
+
+            <?php
+            $query = $objPdo->prepare("SELECT * FROM theme");
+            $query->execute();
+            foreach ($query as $row) {
+                echo '<option value="' . $row['idtheme'] . '"';
+                //Permet de garder le nom du thème sélectionné après le rafraichissment de la page
+                if (isset($_POST['themetri']) && $_POST['themetri'] == $row['idtheme']) echo 'selected="selected"';
+                echo ">" . $row['description'] . '</option>';
+            }
+            ?>
+        </select> </br> </br>
+
+        <input type="submit" value="Valider" name="valider">
 
         <?php
-        $query = $objPdo->prepare("SELECT * FROM theme");
-        $query->execute();
-        foreach ($query as $row) {
-            echo '<option value="' . $row['idtheme'] . '">' . $row['description'] . '</option>';
+
+        if (isset($_POST['valider'])) {
+            if ($_POST['themetri'] == 0) {
+                $id = 1;
+
+                $maxnews = $objPdo->prepare("SELECT * FROM news");
+                $maxnews->execute();
+
+                foreach ($maxnews as $row) {
+                    $_SESSION['idnews'] = $id;
+                    $id += 1;
+                    echo '<article>';
+                    include 'affiche_news.php';
+                    echo '</article>' . '</br> </br>';
+                }
+            } else if ($_POST['themetri'] == 1)
+                echo 'Coucou';
         }
         ?>
-    </select> </br> </br>
-
-
-
-    <?php
-
-    $id = 1;
-
-    $maxnews = $objPdo->prepare("SELECT * FROM news");
-    $maxnews->execute();
-
-    foreach ($maxnews as $row) {
-        $_SESSION['idnews'] = $id;
-        $id += 1;
-        echo '<article>';
-        include 'affiche_news.php';
-        echo '</article>' . '</br> </br>';
-    }
-    ?>
+    </form>
 </body>
 
 <script language="javascript" type="text/javascript">
