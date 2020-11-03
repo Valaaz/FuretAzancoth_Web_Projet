@@ -9,6 +9,7 @@
 <body>
     <header>
         <?php
+        include 'connexion.php';
         session_start();
 
         $co = array();
@@ -31,19 +32,31 @@
 
     <h1>Bienvenue à l'accueil</h1>
 
+    <label>Trier par thème</label> </br>
+    <select name="themetri">
+        <option value='0'>Tous</option>
+
+        <?php
+        $query = $objPdo->prepare("SELECT * FROM theme");
+        $query->execute();
+        foreach ($query as $row) {
+            echo '<option value="' . $row['idtheme'] . '">' . $row['description'] . '</option>';
+        }
+        ?>
+    </select> </br> </br>
+
+
+
     <?php
-    include 'connexion.php';
+
     $id = 1;
 
-    $query = $objPdo->prepare("SELECT * FROM news WHERE idnews = :id");
-    $query->bindvalue(':id', $id, PDO::PARAM_INT);
-    $query->execute();
+    $maxnews = $objPdo->prepare("SELECT * FROM news");
+    $maxnews->execute();
 
-    $maxnews = "SELECT COUNT(*) FROM news";
-    $max = $objPdo->query($maxnews);
-
-    for ($id; $id <= 2; $id++) {
+    foreach ($maxnews as $row) {
         $_SESSION['idnews'] = $id;
+        $id += 1;
         echo '<article>';
         include 'affiche_news.php';
         echo '</article>' . '</br> </br>';
