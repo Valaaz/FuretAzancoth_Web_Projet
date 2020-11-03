@@ -65,12 +65,12 @@ if (isset($_POST['valider'])) {
 
 <head>
     <title>Création de compte</title>
-	<link rel="stylesheet" href="css/creercompte.css" />
+    <link rel="stylesheet" href="css/creercompte.css" />
 </head>
 
 <body>
-	<header>
-	</header>
+    <header>
+    </header>
     <form method="post" action="creercompte.php">
         <?php if (!empty($err_inscription)) { ?>
             <div class="error"><?php echo implode('<br/>', $err_inscription); ?></div>
@@ -86,7 +86,7 @@ if (isset($_POST['valider'])) {
         <input type="text" value="" name="pseudo"> </br>
 
         <label>Mail</label> </br>
-        <input type="text" value="" name="mail"> </br>
+        <input type="email" value="" name="mail"> </br>
 
         <label>Mot de passe</label> </br>
         <input type="text" value="" name="mdp"> </br>

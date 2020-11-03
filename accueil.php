@@ -35,7 +35,7 @@
 
         <label>Trier par thème</label> </br>
         <select name="themetri">
-            <option value='0'>Tous</option>
+            <option value='0'>Tous les thèmes</option>
 
             <?php
             $query = $objPdo->prepare("SELECT * FROM theme");
@@ -49,12 +49,28 @@
             ?>
         </select> </br> </br>
 
+        <label>Trier par thème</label> </br>
+        <select name="datetri">
+            <option value='0'>Toutes les dates</option>
+
+            <?php
+            $query = $objPdo->prepare("SELECT * FROM news");
+            $query->execute();
+            foreach ($query as $row) {
+                echo '<option value="' . $row['datenews'] . '"';
+                //Permet de garder le nom du thème sélectionné après le rafraichissment de la page
+                if (isset($_POST['datetri']) && $_POST['datetri'] == $row['datenews']) echo 'selected="selected"';
+                echo ">" . $row['datenews'] . '</option>';
+            }
+            ?>
+        </select> </br> </br>
+
         <input type="submit" value="Valider" name="valider">
 
         <?php
 
         if (isset($_POST['valider'])) {
-            if ($_POST['themetri'] == 0) {
+            if ($_POST['themetri'] == 0 && $_POST['datetri'] == 0) {
                 $maxnews = $objPdo->prepare("SELECT * FROM news");
                 $maxnews->execute();
 
@@ -65,8 +81,10 @@
                     echo '</article>' . '</br> </br>';
                 }
             } else {
-                $news = $objPdo->prepare("SELECT * FROM news WHERE idtheme = :tri");
-                $news->bindValue(':tri', $_POST['themetri'], PDO::PARAM_INT);
+                //$news = $objPdo->prepare("SELECT * FROM news WHERE idtheme = :themetri");
+                $news = $objPdo->prepare("SELECT * FROM news WHERE datenews = :datetri");
+                //$news->bindValue(':themetri', $_POST['themetri'], PDO::PARAM_INT);
+                $news->bindValue(':datetri', $_POST['datetri'], PDO::PARAM_STR);
                 $news->execute();
 
                 foreach ($news as $row) {
