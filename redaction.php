@@ -22,7 +22,7 @@ if (isset($_POST['valider'])) {
             $err_news[] = 'Erreur MySQL.';
         } else {
             $err_news[] = 'News créée';
-            header('location:redaction.php');
+            header('location:accueil.php');
         }
     } else {
         $err_news[] = 'Remplir les champs vides';

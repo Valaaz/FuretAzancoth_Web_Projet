@@ -55,20 +55,27 @@
 
         if (isset($_POST['valider'])) {
             if ($_POST['themetri'] == 0) {
-                $id = 1;
-
                 $maxnews = $objPdo->prepare("SELECT * FROM news");
                 $maxnews->execute();
 
                 foreach ($maxnews as $row) {
-                    $_SESSION['idnews'] = $id;
-                    $id += 1;
+                    $_SESSION['idnews'] = $row['idnews'];
                     echo '<article>';
                     include 'affiche_news.php';
                     echo '</article>' . '</br> </br>';
                 }
-            } else if ($_POST['themetri'] == 1)
-                echo 'Coucou';
+            } else {
+                $news = $objPdo->prepare("SELECT * FROM news WHERE idnews = :tri");
+                $news->bindValue(':tri', $_POST['themetri'], PDO::PARAM_INT);
+                $news->execute();
+
+                foreach ($news as $row) {
+                    $_SESSION['idnews'] = $row['idnews'];
+                    echo '<article>';
+                    include 'affiche_news.php';
+                    echo '</article>' . '</br> </br>';
+                }
+            }
         }
         ?>
     </form>
