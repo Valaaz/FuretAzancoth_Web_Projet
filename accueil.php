@@ -65,7 +65,7 @@
                     echo '</article>' . '</br> </br>';
                 }
             } else {
-                $news = $objPdo->prepare("SELECT * FROM news WHERE idnews = :tri");
+                $news = $objPdo->prepare("SELECT * FROM news WHERE idtheme = :tri");
                 $news->bindValue(':tri', $_POST['themetri'], PDO::PARAM_INT);
                 $news->execute();
 
