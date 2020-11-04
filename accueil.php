@@ -54,13 +54,13 @@
             <option value='0'>Toutes les dates</option>
 
             <?php
-            $query = $objPdo->prepare("SELECT * FROM news");
+            $query = $objPdo->prepare("SELECT DISTINCT date(datenews) FROM news");
             $query->execute();
             foreach ($query as $row) {
-                echo '<option value="' . $row['datenews'] . '"';
+                echo '<option value="' . $row['date(datenews)'] . '"';
                 //Permet de garder le nom du thème sélectionné après le rafraichissment de la page
-                if (isset($_POST['datetri']) && $_POST['datetri'] == $row['datenews']) echo 'selected="selected"';
-                echo ">" . $row['datenews'] . '</option>';
+                if (isset($_POST['datetri']) && $_POST['datetri'] == $row['date(datenews)']) echo 'selected="selected"';
+                echo ">" . $row['date(datenews)'] . '</option>';
             }
             ?>
         </select> </br> </br>
