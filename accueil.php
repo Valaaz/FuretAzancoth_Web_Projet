@@ -49,7 +49,7 @@
             ?>
         </select> </br> </br>
 
-        <label>Trier par thème</label> </br>
+        <label>Trier par date</label> </br>
         <select name="datetri">
             <option value='0'>Toutes les dates</option>
 
@@ -81,11 +81,20 @@
                     echo '</article>' . '</br> </br>';
                 }
             } else {
-                //$news = $objPdo->prepare("SELECT * FROM news WHERE idtheme = :themetri");
-                $news = $objPdo->prepare("SELECT * FROM news WHERE datenews = :datetri");
-                //$news->bindValue(':themetri', $_POST['themetri'], PDO::PARAM_INT);
-                $news->bindValue(':datetri', $_POST['datetri'], PDO::PARAM_STR);
-                $news->execute();
+                if ($_POST['themetri'] == 0 && $_POST['datetri'] != 0) {
+                    $news = $objPdo->prepare("SELECT * FROM news WHERE datenews = :datetri");
+                    $news->bindValue(':datetri', $_POST['datetri'], PDO::PARAM_STR);
+                    $news->execute();
+                } else if ($_POST['datetri'] == 0 && $_POST['themetri'] != 0) {
+                    $news = $objPdo->prepare("SELECT * FROM news WHERE idtheme = :themetri");
+                    $news->bindValue(':themetri', $_POST['themetri'], PDO::PARAM_INT);
+                    $news->execute();
+                } else {
+                    $news = $objPdo->prepare("SELECT * FROM news WHERE idtheme = :themetri AND datenews = :datetri");
+                    $news->bindValue(':themetri', $_POST['themetri'], PDO::PARAM_INT);
+                    $news->bindValue(':datetri', $_POST['datetri'], PDO::PARAM_STR);
+                    $news->execute();
+                }
 
                 foreach ($news as $row) {
                     $_SESSION['idnews'] = $row['idnews'];
