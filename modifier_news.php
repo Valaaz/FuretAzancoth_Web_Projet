@@ -43,15 +43,16 @@ if (isset($_POST['valider'])) {
         <?php     } ?>
         <h1>Modifier une news</h1>
         <label>Titre</label> </br>
-        <input type="text" value="" name="titre"> </br>
+        <input type="text" value="<?php echo $_GET['titre'] ?>" name="titre"> </br>
 
         <label>Contenu</label> </br>
-        <textarea name="contenu" id="contenu" rows="40" cols="100"></textarea> </br>
+        <textarea name="contenu" id="contenu" rows="40" cols="100"><?php echo $_GET['contenu'] ?></textarea> </br>
 
         <input type="submit" value="Validez" name="valider"> </br>
         <input type="button" value="Retour" name="annuler" onclick="Annuler()"> </br>
     </form>
 </body>
+
 
 <script language="javascript" type="text/javascript">
     function Annuler() {
