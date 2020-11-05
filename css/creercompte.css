@@ -21,3 +21,7 @@ body{
 	background-size: 100vw, auto;
 	background-position: center;
 }
+
+input {
+	border: 2px solid black;
+}
