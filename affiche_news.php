@@ -1,5 +1,10 @@
+<head>
+    <title>Accueil</title>
+    <link rel="stylesheet" href="css/affiche_news.css" />
+</head>
 <body>
     <article>
+	<div>
         <?php
         include 'connexion.php';
 
@@ -41,5 +46,6 @@
         echo '<h1>News :</h1>';
         echo $contenu . '<br>';
         ?>
+		</div>
     </article>
 </body>

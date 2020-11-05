@@ -4,7 +4,6 @@ header {
 	text-align: right;
 }
 
-
 footer {
     display: flex;
     justify-content: center;
@@ -16,5 +15,10 @@ footer {
 
 body{
 	margin: 0;
+	background-repeat: no-repeat;
+	background-image: url('logo.jpg');
+	background-position: 100% 5%;
+	background-size: 5%;
+	
 }
 

@@ -65,8 +65,8 @@
             ?>
         </select> </br> </br>
 
-        <input type="submit" value="Valider" name="valider">
-
+        <input type="submit" value="Valider" name="valider"> <br/></br>
+		<div>
         <?php
 
         if (isset($_POST['valider'])) {
@@ -115,6 +115,7 @@
             }
         }
         ?>
+		</div>
     </form>
 </body>
 
