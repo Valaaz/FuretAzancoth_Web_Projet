@@ -1,4 +1,12 @@
+<head>
+    <title>Mes news</title>
+</head>
+
 <body>
+    <header>
+        <a href="#" onclick="Annuler()"> Retour à l'accueil </a> </br>
+    </header>
+
     <article>
         <?php
         include 'connexion.php';
@@ -56,4 +64,11 @@
         }
         ?>
     </article>
+
+    <script language="javascript" type="text/javascript">
+        function Annuler() {
+            if (confirm("Souhaitez-vous revenir à l'accueil ?"))
+                window.location.href = "accueil.php"
+        }
+    </script>
 </body>

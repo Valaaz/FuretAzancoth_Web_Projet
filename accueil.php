@@ -17,8 +17,8 @@
         if (isset($_SESSION['isLogged'])) {
             $co = '<a href="#" onclick="MessageAlerte()"> Se deconnecter </a> <br>';
             echo $co;
-            echo '<a href="redaction.php" target="_blank"> Redacteur </a> <br>';
-            echo '<a href="mesnews.php" target="_blank"> Mes news </a> <br>';
+            echo '<a href="redaction.php"> Redacteur </a> <br>';
+            echo '<a href="mesnews.php"> Mes news </a> <br>';
             // Affichage du pseudo de l'utilisateur connecté
             echo 'Connecté : ' . $_SESSION['pseudo'] . '<br>';
             // Affichage du mail de l'utilisateur connecté
