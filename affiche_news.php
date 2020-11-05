@@ -1,5 +1,10 @@
+<head>
+    <title>Accueil</title>
+    <link rel="stylesheet" href="css/affiche_news.css" />
+</head>
 <body>
     <article>
+	<div>
         <?php
         include 'connexion.php';
 
@@ -43,5 +48,6 @@
 
         //echo '<a href="supprimer_news.php"> Supprimer </a> <br>';
         ?>
+		</div>
     </article>
 </body>
