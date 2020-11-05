@@ -50,27 +50,6 @@ if (isset($_POST['valider'])) {
         $err_connexion[] = 'Remplissez tous les champs obligatoires.';
     }
 }
-
-
-
-
-/*
-if (isset($_POST['valider'])) {
-if (isset($_POST["utilisateur"]) and isset($_POST["mdp"])) {
-    if ($_POST["utilisateur"] == "valaz" and $_POST["mdp"] == "val") {
-            $_SESSION["isLogged"] = true;
-            if (isset($_GET['target']))
-                header('Location:' . $_GET["target"]);
-            else
-                header('Location:accueil.php');
-        }*/
-//}
-/*
-if (isset($_SESSION["isLogged"]))
-    header('Location:accueil.php');
-*/
-/*if (isset($_POST['url']))
-    echo 'Vous devez vous connecter si vous voulez accéder à cette page :';*/
 ?>
 
 <html>
@@ -92,8 +71,16 @@ if (isset($_SESSION["isLogged"]))
         <label>Mot de passe</label> </br>
         <input type="text" value="" name="mdp"> </br> </br>
         <input type="submit" value="Validez" name="valider"> <br>
+        <input type="button" value="Retour" name="annuler" onclick="Annuler()"> </br>
         <a href="creercompte.php"> Créer un compte </a>
     </form>
 </body>
+
+<script language="javascript" type="text/javascript">
+    function Annuler() {
+        if (confirm("Souhaitez-vous revenir à l'accueil ?"))
+            window.location.href = "accueil.php"
+    }
+</script>
 
 </html>

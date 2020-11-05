@@ -40,6 +40,8 @@
 
         echo '<h1>News :</h1>';
         echo $contenu . '<br>';
+
+        //echo '<a href="supprimer_news.php"> Supprimer </a> <br>';
         ?>
     </article>
 </body>

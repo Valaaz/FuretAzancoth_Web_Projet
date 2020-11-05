@@ -95,7 +95,15 @@ if (isset($_POST['valider'])) {
         <input type="text" value="" name="mdp2"> </br> </br>
 
         <input type="submit" value="Validez" name="valider">
+        <input type="button" value="Retour" name="annuler" onclick="Annuler()"> </br>
     </form>
 </body>
+
+<script language="javascript" type="text/javascript">
+    function Annuler() {
+        if (confirm("Souhaitez-vous revenir à l'accueil ?"))
+            window.location.href = "accueil.php"
+    }
+</script>
 
 </html>
