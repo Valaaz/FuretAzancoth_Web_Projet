@@ -6,51 +6,57 @@ $query = $objPdo->prepare("SELECT * FROM redacteur");
 $query->execute();
 
 $ok = true;
-$err_inscription = array();
 if (isset($_POST['valider'])) {
-    // Vérifie si le pseudo et/ou le mail rentré(-s) existe(-nt) déjà
-    foreach ($query as $row) {
-        if ($row['pseudo'] == $_POST['pseudo']) {
-            $err_inscription[] = 'Ce pseudo existe déjà';
-            $ok = false;
+    // Vérifie si les champs sont remplis on non 
+    if (!empty($_POST['pseudo']) && !empty($_POST['mail']) && !empty($_POST['mdp']) && !empty($_POST['mdp2']) && !empty($_POST['nom']) && !empty($_POST['prenom'])) {
+        // Vérifie si le pseudo et/ou le mail rentré(-s) existe(-nt) déjà
+        foreach ($query as $row) {
+            if ($row['pseudo'] == $_POST['pseudo']) {
+                echo "<script>alert('Ce pseudo existe déjà')</script>";
+                $ok = false;
+            }
+            if ($row['adressemail'] == $_POST['mail']) {
+                echo "<script>alert('Cette adresse mail existe déjà')</script>";
+                $ok = false;
+            }
         }
-        if ($row['adressemail'] == $_POST['mail']) {
-            $err_inscription[] = 'Cette adresse mail existe déjà';
-            $ok = false;
+        if ($ok == true) {
+
+            if ($_POST['mdp'] == $_POST['mdp2']) {
+                $nom = htmlentities($_POST['nom']);
+                $prenom = htmlentities($_POST['prenom']);
+                $pseudo = htmlentities($_POST['pseudo']);
+                $mail = htmlentities($_POST['mail']);
+                $mdp = crypt(htmlentities($_POST['mdp']), '$2a$07$usesomesillystringforsalt');
+
+                // INSERT en bdd
+                $pdostat = $objPdo->prepare("INSERT INTO `redacteur`(`nom`, `prenom`, `pseudo`, `adressemail`, `motdepasse`) VALUES(:nom, :prenom, :pseudo, :mail, :mdp);");
+                $pdostat->bindvalue(':pseudo', $pseudo, PDO::PARAM_STR);
+                $pdostat->bindvalue(':mdp', $mdp, PDO::PARAM_STR);
+                $pdostat->bindvalue(':nom', $nom, PDO::PARAM_STR);
+                $pdostat->bindvalue(':prenom', $prenom, PDO::PARAM_STR);
+                $pdostat->bindvalue(':mail', $mail, PDO::PARAM_STR);
+
+                if (!$pdostat->execute()) { // Si le résultat de la requête est faux ou null, c'est qu'il y a eu un problème
+                    echo "<script>alert('Erreur msql')</script>";
+                } else {
+                    if (session_id() == "") // Si l'id de session est vide, c'est que la session n'est pas démarée
+                        session_start();
+                    // Mise en SESSION
+                    $_SESSION['isLogged'] = true;
+                    $_SESSION['pseudo'] = $pseudo;
+                    $_SESSION['mail'] = $mail;
+
+                    // ATTENTION ! ON NE MET JAMAIS LE MOT DE PASSE EN SESSION !!
+                    // on redirige vers l'espace membre
+                    header('location:accueil.php');
+                    exit();
+                }
+            } else
+                echo "<script>alert('Les deux mots de passe sont différents.')</script>";
         }
-    }
-    if ($ok == true) {
-
-        $nom = htmlentities($_POST['nom']);
-        $prenom = htmlentities($_POST['prenom']);
-        $pseudo = htmlentities($_POST['pseudo']);
-        $mail = htmlentities($_POST['mail']);
-        $mdp = crypt(htmlentities($_POST['mdp']), '$2a$07$usesomesillystringforsalt');
-
-        // INSERT en bdd
-        $pdostat = $objPdo->prepare("INSERT INTO `redacteur`(`nom`, `prenom`, `pseudo`, `adressemail`, `motdepasse`) VALUES(:nom, :prenom, :pseudo, :mail, :mdp);");
-        $pdostat->bindvalue(':pseudo', $pseudo, PDO::PARAM_STR);
-        $pdostat->bindvalue(':mdp', $mdp, PDO::PARAM_STR);
-        $pdostat->bindvalue(':nom', $nom, PDO::PARAM_STR);
-        $pdostat->bindvalue(':prenom', $prenom, PDO::PARAM_STR);
-        $pdostat->bindvalue(':mail', $mail, PDO::PARAM_STR);
-
-        if (!$pdostat->execute()) { // Si le résultat de la requête est faux ou null, c'est qu'il y a eu un problème
-            $err_inscription[] = 'Erreur MySQL : Ce pseudo ou cette adresse mail existe déjà.';
-        } else {
-            if (session_id() == "") // Si l'id de session est vide, c'est que la session n'est pas démarée
-                session_start();
-            // Mise en SESSION
-            $_SESSION['isLogged'] = true;
-            $_SESSION['pseudo'] = $pseudo;
-            $_SESSION['mail'] = $mail;
-
-            // ATTENTION ! ON NE MET JAMAIS LE MOT DE PASSE EN SESSION !!
-            // on redirige vers l'espace membre
-            header('location:accueil.php');
-            exit();
-        }
-    }
+    } else
+        echo "<script>alert('Remplissez tous les champs obligatoires.')</script>";
 }
 ?>
 
@@ -65,9 +71,6 @@ if (isset($_POST['valider'])) {
     <header>
     </header>
     <form method="post" action="creercompte.php" onsubmit="return Valider()" name="formulaire">
-        <?php if (!empty($err_inscription)) { ?>
-            <div class="error"><?php echo implode('<br/>', $err_inscription); ?></div>
-        <?php     } ?>
         <h1>Créer un compte</h1>
         <label>Nom</label> </br>
         <input type="text" value="" name="nom"> </br>
@@ -84,7 +87,7 @@ if (isset($_POST['valider'])) {
         <label>Mot de passe</label> </br>
         <input type="text" value="" name="mdp"> </br>
 
-        <label>Confirmation</label> </br>
+        <label>Confirmation mot de passe</label> </br>
         <input type="text" value="" name="mdp2"> </br> </br>
 
         <input type="submit" value="Validez" name="valider">
@@ -99,7 +102,6 @@ if (isset($_POST['valider'])) {
     }
 
     function Valider() {
-
         var nom = document.forms['formulaire'].nom
         var prenom = document.forms['formulaire'].prenom;
         var pseudo = document.forms['formulaire'].pseudo;
@@ -164,7 +166,7 @@ if (isset($_POST['valider'])) {
             ok = false;
             ChangerCouleur(mdp);
             ChangerCouleur(mdp2);
-        } else {
+        } else if (!(!mdp.value.replace(/\s+/, '').length && !mdp2.value.replace(/\s+/, '').length)) {
             ReinitialiserCouleur(mdp);
             ReinitialiserCouleur(mdp2);
         }
