@@ -33,7 +33,7 @@
 
     <form method="POST">
         <h1>Bienvenue à l'accueil</h1>
-
+		<div class = "trier">
         <label>Trier par thème</label> </br>
         <select name="themetri">
             <option value='0'>Tous les thèmes</option>
@@ -67,6 +67,7 @@
         </select> </br> </br>
 
         <input type="submit" value="Valider" name="valider"> <br/></br>
+		</div2>
 		<div>
         <?php
 

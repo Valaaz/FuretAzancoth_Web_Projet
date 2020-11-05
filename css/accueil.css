@@ -19,6 +19,12 @@ body{
 	background-image: url('logo.jpg');
 	background-position: 100% 5%;
 	background-size: 5%;
-	
 }
 
+div{
+	background-color: cornsilk;
+}
+
+.trier {
+	background-color: khaki;
+} 
