@@ -46,7 +46,6 @@
             while ($row3 = $resultredac->fetch())
                 $redacteur = $row3['pseudo'];
 
-            echo $idnews;
             echo 'Rédigé le ' . $date . ' par ' . $redacteur;
 
             echo '<h1>Thème :</h1>';
@@ -58,6 +57,7 @@
             echo '<h1>News :</h1>';
             echo $contenu . '<br>';
 
+            echo '<a href="modifier_news.php?idnews=' . $idnews . '"> Modifier </a> <br>';
             echo '<a href="supprimer_news.php?idnews=' . $idnews . '"> Supprimer </a> <br>';
 
             echo ' </br> </br>';
