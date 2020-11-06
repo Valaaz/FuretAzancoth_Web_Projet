@@ -2,8 +2,6 @@
 include 'connexion.php';
 
 session_start();
-
-$err_connexion = array();
 if (isset($_POST['valider'])) {
     if (!empty($_POST['utilisateur']) && !empty($_POST['mdp'])) {
         // Pseudo
@@ -15,7 +13,7 @@ if (isset($_POST['valider'])) {
         $pdostat2->bindvalue(':mail', $_POST['utilisateur'], PDO::PARAM_STR);
         $pdostat2->execute();
 
-        if ($pdostat->rowCount() > 0 || $pdostat2->rowCount() > 0) // username OK
+        if ($pdostat->rowCount() > 0 || $pdostat2->rowCount() > 0) // utilisateur bon
         {
             $row = $pdostat->fetch();
             $row2 = $pdostat2->fetch();
@@ -33,22 +31,14 @@ if (isset($_POST['valider'])) {
                     $_SESSION['pseudo'] = $row2['pseudo'];
                     $_SESSION['mail'] = $row2['adressemail'];
                 }
-                $err_connexion[] = 'Connecté';
-                // On renvoie a l'accueil
                 header('location:accueil.php');
                 exit();
-            } else {
-                $err_connexion[] = 'erreur : mot de passe : ' . $_POST['mdp'];
-                $err_connexion[] = 'Identifiant et/ou mot de passe incorrect.';
-            }
-        } else {
-            $err_connexion[] = 'rowCount : ' . $pdostat->rowCount();
-            $err_connexion[] = 'erreur Identifiant : ' . $_POST['utilisateur'];
-            $err_connexion[] = 'Identifiant et/ou mot de passe incorrect.';
-        }
-    } else {
-        $err_connexion[] = 'Remplissez tous les champs obligatoires.';
-    }
+            } else
+                echo "<script>alert('Mot de passe incorrect.')</script>";
+        } else
+            echo "<script>alert('Identifiant incorrect.')</script>";
+    } else
+        echo "<script>alert('Remplissez tous les champs obligatoires.')</script>";
 }
 ?>
 
@@ -62,10 +52,7 @@ if (isset($_POST['valider'])) {
 <body>
     <header>
     </header>
-    <form method="post" action="identification.php">
-        <?php if (!empty($err_connexion)) { ?>
-            <div class="error"><?php echo implode('<br/>', $err_connexion); ?></div>
-        <?php     } ?>
+    <form method="post" action="identification.php" onsubmit="return Valider()" name="formulaire">
         <label>Identifiant</label> </br>
         <input type="text" value="" name="utilisateur"> </br>
         <label>Mot de passe</label> </br>
@@ -80,6 +67,36 @@ if (isset($_POST['valider'])) {
     function Annuler() {
         if (confirm("Souhaitez-vous revenir à l'accueil ?"))
             window.location.href = "accueil.php"
+    }
+
+    function Valider() {
+        var identifiant = document.forms['formulaire'].utilisateur;
+        var mdp = document.forms['formulaire'].mdp;
+        var ok = document.forms['formulaire'].$ok;
+
+        if (!identifiant.value.replace(/\s+/, '').length) {
+            alert("Identifiant vide");
+            ok = false;
+            ChangerCouleur(identifiant);
+        } else
+            ReinitialiserCouleur(identifiant);
+
+        if (!mdp.value.replace(/\s+/, '').length) {
+            alert("Mot de passe vide");
+            ok = false;
+            ChangerCouleur(mdp);
+        } else
+            ReinitialiserCouleur(mdp);
+
+        return ok;
+    }
+
+    function ChangerCouleur(objet) {
+        objet.setAttribute('style', 'border: 2px solid red;');
+    }
+
+    function ReinitialiserCouleur(objet) {
+        objet.setAttribute('style', 'border-color: black;');
     }
 </script>
 

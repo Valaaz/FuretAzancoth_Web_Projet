@@ -109,9 +109,7 @@ if (isset($_POST['valider'])) {
         var mdp = document.forms['formulaire'].mdp;
         var mdp2 = document.forms['formulaire'].mdp2;
         var ok = document.forms['formulaire'].$ok;
-        var erreur = document.forms['formulaire'].$err_inscription;
         var regex = /^\w+[\+\.\w-]*@([\w-]+\.)*\w+[\w-]*\.([a-z]{2,4}|\d+)$/i;
-
 
         if (!nom.value.replace(/\s+/, '').length) {
             alert("Nom vide");
