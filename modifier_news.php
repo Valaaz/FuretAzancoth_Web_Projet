@@ -3,7 +3,6 @@ include 'connexion.php';
 
 session_start();
 
-$err_news = array();
 if (isset($_POST['valider'])) {
     if (!empty($_POST['titre']) && !empty($_POST['contenu'])) {
 
@@ -15,15 +14,12 @@ if (isset($_POST['valider'])) {
         $suppnews->bindValue(':nouvcontenu', $contenu, PDO::PARAM_STR);
         $suppnews->bindValue(':idnews', $_GET['idnews'], PDO::PARAM_INT);
 
-        if (!$suppnews->execute()) { // Si le résultat de la requête est faux ou null, c'est qu'il y a eu un problème
-            $err_news[] = 'Erreur MySQL.';
-        } else {
-            $err_news[] = 'News modifiée';
+        if (!$suppnews->execute())  // Si le résultat de la requête est faux ou null, c'est qu'il y a eu un problème
+            echo "<script>alert('Erreur MySQL.')</script>";
+        else
             header('location:mesnews.php');
-        }
-    } else {
-        $err_news[] = 'Remplir les champs vides';
-    }
+    } else
+        echo "<script>alert('Remplir les champs vides.')</script>";
 }
 ?>
 
@@ -37,10 +33,7 @@ if (isset($_POST['valider'])) {
 <body>
     <header>
     </header>
-    <form method="post">
-        <?php if (!empty($err_news)) { ?>
-            <div class="error"><?php echo implode('<br/>', $err_news); ?></div>
-        <?php     } ?>
+    <form method="post" onsubmit="return Valider()" name="formulaire">
         <h1>Modifier une news</h1>
         <label>Titre</label> </br>
         <input type="text" value="<?php echo $_GET['titre'] ?>" name="titre"> </br>
@@ -58,6 +51,36 @@ if (isset($_POST['valider'])) {
     function Annuler() {
         if (confirm("Souhaitez-vous vous annuler la rédaction en cours ?"))
             window.location.href = "mesnews.php"
+    }
+
+    function Valider() {
+        var titre = document.forms['formulaire'].titre;
+        var contenu = document.forms['formulaire'].contenu;
+        var ok = true;
+
+        if (!titre.value.replace(/\s+/, '').length) {
+            alert("Titre de la news vide");
+            ok = false;
+            ChangerCouleur(titre);
+        } else
+            ReinitialiserCouleur(titre);
+
+        if (!contenu.value.replace(/\s+/, '').length) {
+            alert("Contenu vide");
+            ok = false;
+            ChangerCouleur(contenu);
+        } else
+            ReinitialiserCouleur(contenu);
+
+        return ok;
+    }
+
+    function ChangerCouleur(objet) {
+        objet.setAttribute('style', 'border: 2px solid red;');
+    }
+
+    function ReinitialiserCouleur(objet) {
+        objet.setAttribute('style', 'border-color: black;');
     }
 </script>
 

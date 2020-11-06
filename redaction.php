@@ -18,15 +18,12 @@ if (isset($_POST['valider'])) {
         $pdostat->bindvalue(':redacteur', $_SESSION['id'], PDO::PARAM_INT);
 
 
-        if (!$pdostat->execute()) { // Si le résultat de la requête est faux ou null, c'est qu'il y a eu un problème
-            $err_news[] = 'Erreur MySQL.';
-        } else {
-            $err_news[] = 'News créée';
+        if (!$pdostat->execute()) // Si le résultat de la requête est faux ou null, c'est qu'il y a eu un problème
+            echo "<script>alert('Erreur MySQL.')</script>";
+        else
             header('location:accueil.php');
-        }
-    } else {
-        $err_news[] = 'Remplir les champs vides';
-    }
+    } else
+        echo "<script>alert('Remplir les champs vides.')</script>";
 }
 ?>
 
@@ -40,10 +37,7 @@ if (isset($_POST['valider'])) {
 <body>
     <header>
     </header>
-    <form method="post" action="redaction.php">
-        <?php if (!empty($err_news)) { ?>
-            <div class="error"><?php echo implode('<br/>', $err_news); ?></div>
-        <?php     } ?>
+    <form method="post" action="redaction.php" onsubmit="return Valider()" name="formulaire">
         <h1>Créer une news</h1>
         <label>Titre</label> </br>
         <input type="text" value="" name="titre"> </br>
@@ -80,6 +74,44 @@ if (isset($_POST['valider'])) {
     function Annuler() {
         if (confirm("Souhaitez-vous vous annuler la rédaction en cours ?"))
             window.location.href = "accueil.php"
+    }
+
+    function Valider() {
+        var titre = document.forms['formulaire'].titre;
+        var theme = document.forms['formulaire'].choixtheme;
+        var contenu = document.forms['formulaire'].contenu;
+        var ok = true;
+
+        if (!titre.value.replace(/\s+/, '').length) {
+            alert("Titre de la news vide");
+            ok = false;
+            ChangerCouleur(titre);
+        } else
+            ReinitialiserCouleur(titre);
+
+        if (!theme.value.replace(/\s+/, '').length) {
+            alert("Thème vide");
+            ok = false;
+            ChangerCouleur(theme);
+        } else
+            ReinitialiserCouleur(theme);
+
+        if (!contenu.value.replace(/\s+/, '').length) {
+            alert("Contenu vide");
+            ok = false;
+            ChangerCouleur(contenu);
+        } else
+            ReinitialiserCouleur(contenu);
+
+        return ok;
+    }
+
+    function ChangerCouleur(objet) {
+        objet.setAttribute('style', 'border: 2px solid red;');
+    }
+
+    function ReinitialiserCouleur(objet) {
+        objet.setAttribute('style', 'border-color: black;');
     }
 </script>
 
