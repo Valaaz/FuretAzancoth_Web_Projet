@@ -28,15 +28,18 @@ $resultredac->execute();
 while ($row3 = $resultredac->fetch())
     $redacteur = $row3['pseudo'];
 
-echo '<div class="date">' . 'Rédigé le ' . $date . '</div>';
+echo 'Rédigé le ' . $date;
 
-echo '<div class="theme">' . '<h1>Thème :</h1>' . '</div>';
+echo '<h1>Thème :</h1>';
 echo  $theme . '<br>';
 
-echo '<div class="titre">' . '<h1>Titre :</h1>' . '</div>';
+echo '<h1>Titre :</h1>';
 echo $titre . '<br>';
 
-echo '<div class="contenu">' . '<h1>News :</h1>' . '</div>';
+echo '<h1>News :</h1>';
 echo $contenu . '<br> <br>';
 
-echo '<div class="redac">' . $redacteur . '</div>';
+echo '<div class="redac">' . $redacteur . '</div> <br>';
+
+echo '<a href="modifier_news.php?idnews=' . $idnews . '&titre=' . $titre . '&contenu=' . $contenu . '"> Modifier </a> <br>';
+echo '<a href="supprimer_news.php?idnews=' . $idnews . '"> Supprimer </a> <br>';

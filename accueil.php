@@ -68,7 +68,6 @@
         <input type="submit" value="Valider" name="valider"> <br /></br>
         <section>
             <?php
-
             if (isset($_POST['valider'])) {
                 if ($_POST['themetri'] == 0 && $_POST['datetri'] == 0) {
                     $maxnews = $objPdo->prepare("SELECT * FROM news");

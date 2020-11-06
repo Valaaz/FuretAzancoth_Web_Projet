@@ -1,7 +1,7 @@
 header {
 	background-color: rgb(233, 105, 0);
 	height: 100px;
-	text-align: right;
+	text-align: left;
 }
 
 footer {
@@ -16,10 +16,6 @@ footer {
 body{
 	margin: 0;
 	background-color: #8F5C38;
-	background-repeat: no-repeat;
-	background-image: url('logo.jpg');
-	background-position: 100% 5%;
-	background-size: 5%;
 }
 
 section {
@@ -47,11 +43,7 @@ article:hover {
 	text-align: right;
 }
 
-.date {
-	text-decoration: underline;
-}
-
-.theme, .titre, .contenu {
+h1 {
 	text-align: center;
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	font-style: italic;
