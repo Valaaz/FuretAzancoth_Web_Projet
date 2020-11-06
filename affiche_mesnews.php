@@ -28,7 +28,7 @@ $resultredac->execute();
 while ($row3 = $resultredac->fetch())
     $redacteur = $row3['pseudo'];
 
-echo 'Rédigé le ' . $date;
+echo '<div class="datenews">' . 'Rédigé le ' . $date . '</div>';
 
 echo '<h1>Thème :</h1>';
 echo  $theme . '<br>';
@@ -37,7 +37,7 @@ echo '<h1>Titre :</h1>';
 echo $titre . '<br>';
 
 echo '<h1>News :</h1>';
-echo $contenu . '<br> <br>';
+echo '<textarea rows="8" cols="82">' . $contenu . '</textarea>' . '<br> <br>';
 
 echo '<div class="redac">' . $redacteur . '</div> <br>';
 

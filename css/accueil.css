@@ -1,6 +1,7 @@
 header {
-	background-color: rgb(233, 105, 0);
+	background-color: #A2785A;
 	height: 100px;
+	margin: 0;
 	text-align: right;
 }
 
@@ -40,6 +41,10 @@ article {
 article:hover {
 	box-shadow: 5px 5px 5px #C09E73;
 	filter: brightness(110%);
+}
+
+textarea {
+	resize: none;
 }
 
 .redac {

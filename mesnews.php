@@ -5,7 +5,8 @@
 
 <body>
     <header>
-        <a href="#" onclick="Annuler()"> Retour à l'accueil </a> </br>
+        <h1>Mes news</h1>
+        <a class="retour" href="#" onclick="Annuler()"> Retour à l'accueil </a> </br>
     </header>
 
     <section>

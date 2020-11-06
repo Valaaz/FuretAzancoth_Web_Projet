@@ -1,5 +1,5 @@
 header {
-	background-color: rgb(233, 105, 0);
+	background-color: #A2785A;
 	height: 100px;
 	text-align: left;
 }
@@ -16,6 +16,7 @@ footer {
 body{
 	margin: 0;
 	background-color: #8F5C38;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 section {
@@ -38,13 +39,26 @@ article:hover {
 	filter: brightness(110%);
 }
 
+h1 {
+	text-align: center;
+	font-style: italic;
+}
+
+textarea {
+	resize: none;
+}
+
+.datenews {
+	text-decoration: underline;
+}
+
 .redac {
 	font-weight: bold;
 	text-align: right;
 }
 
 .supp {
-	margin-left: 470px;
+	margin-left: 450px;
 }
 
 .supp, .modif {
@@ -54,10 +68,3 @@ article:hover {
 .supp:hover, .modif:hover {
 	color: #d38003;
 }
-
-h1 {
-	text-align: center;
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-	font-style: italic;
-}
-

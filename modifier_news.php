@@ -42,7 +42,7 @@ if (isset($_POST['valider'])) {
         <input class="conteneur" id="titre" type="text" value="<?php echo $_GET['titre'] ?>" name="titre"> </br>
 
         <label>Contenu</label> </br>
-        <textarea class="conteneur name=" contenu" id="contenu" rows="40" cols="100"><?php echo $_GET['contenu'] ?></textarea> </br>
+        <textarea class="conteneur" name="contenu" id="contenu" rows="40" cols="100" wrap="hard"><?php echo $_GET['contenu'] ?></textarea> </br>
 
         <div class="bouton">
             <input class="valid" type="submit" value="Validez" name="valider">

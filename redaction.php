@@ -61,7 +61,7 @@ if (isset($_POST['valider'])) {
         </div>
 
         <label>Contenu</label> </br>
-        <textarea class="conteneur" name="contenu" id="contenu" rows="40" cols="100"></textarea> </br>
+        <textarea class="conteneur" name="contenu" id="contenu" rows="40" cols="100" wrap="hard"></textarea> </br>
 
         <div class="bouton">
             <input class="valid" type="submit" value="Validez" name="valider">
