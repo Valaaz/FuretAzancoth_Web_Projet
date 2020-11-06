@@ -41,5 +41,5 @@ echo $contenu . '<br> <br>';
 
 echo '<div class="redac">' . $redacteur . '</div> <br>';
 
-echo '<a href="modifier_news.php?idnews=' . $idnews . '&titre=' . $titre . '&contenu=' . $contenu . '"> Modifier </a> <br>';
-echo '<a href="supprimer_news.php?idnews=' . $idnews . '"> Supprimer </a> <br>';
+echo '<a class="modif" href="modifier_news.php?idnews=' . $idnews . '&titre=' . $titre . '&contenu=' . $contenu . '"> Modifier </a>';
+echo '<a class="supp" href="supprimer_news.php?idnews=' . $idnews . '"> Supprimer </a> <br>';

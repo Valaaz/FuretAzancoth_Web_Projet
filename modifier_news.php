@@ -9,12 +9,12 @@ if (isset($_POST['valider'])) {
         $titre = htmlentities($_POST['titre']);
         $contenu = htmlentities($_POST['contenu']);
 
-        $suppnews = $objPdo->prepare("UPDATE news SET titrenews = :nouvtitre, textenews = :nouvcontenu WHERE idnews = :idnews");
-        $suppnews->bindValue(':nouvtitre', $titre, PDO::PARAM_STR);
-        $suppnews->bindValue(':nouvcontenu', $contenu, PDO::PARAM_STR);
-        $suppnews->bindValue(':idnews', $_GET['idnews'], PDO::PARAM_INT);
+        $modifnews = $objPdo->prepare("UPDATE news SET titrenews = :nouvtitre, textenews = :nouvcontenu WHERE idnews = :idnews");
+        $modifnews->bindValue(':nouvtitre', $titre, PDO::PARAM_STR);
+        $modifnews->bindValue(':nouvcontenu', $contenu, PDO::PARAM_STR);
+        $modifnews->bindValue(':idnews', $_GET['idnews'], PDO::PARAM_INT);
 
-        if (!$suppnews->execute())  // Si le résultat de la requête est faux ou null, c'est qu'il y a eu un problème
+        if (!$modifnews->execute())  // Si le résultat de la requête est faux ou null, c'est qu'il y a eu un problème
             echo "<script>alert('Erreur MySQL.')</script>";
         else
             header('location:mesnews.php');
