@@ -37,6 +37,6 @@ echo '<div class="titre">' . '<h1>Titre :</h1>' . '</div>';
 echo $titre . '<br>';
 
 echo '<div class="contenu">' . '<h1>News :</h1>' . '</div>';
-echo '<textarea rows="8" cols="82">' . $contenu . '</textarea>' . '<br> <br>';
+echo '<textarea rows="10" cols="82">' . $contenu . '</textarea>' . '<br> <br>';
 
 echo '<div class="redac">' . $redacteur . '</div>';
