@@ -38,9 +38,10 @@ if (isset($_POST['valider'])) {
     <header>
         <h1>Créer une news</h1>
     </header>
+    <hr>
     <form method="post" action="redaction.php" onsubmit="return Valider()" name="formulaire">
         <label>Titre</label> </br>
-        <input class="conteneur" type="text" value="" name="titre"> </br>
+        <input class="conteneur" id="titre" type="text" value="" name="titre"> </br>
 
         <label>Choisir un thème</label> </br>
         <div class="classtheme">
@@ -62,8 +63,11 @@ if (isset($_POST['valider'])) {
         <label>Contenu</label> </br>
         <textarea class="conteneur" name="contenu" id="contenu" rows="40" cols="100"></textarea> </br>
 
-        <input type="submit" value="Validez" name="valider"> </br>
-        <input type="button" value="Retour" name="annuler" onclick="Annuler()"> </br>
+        <div class="bouton">
+            <input class="valid" type="submit" value="Validez" name="valider">
+            <input class="retour" type="button" value="Retour" name="annuler" onclick="Annuler()">
+        </div>
+
     </form>
 </body>
 

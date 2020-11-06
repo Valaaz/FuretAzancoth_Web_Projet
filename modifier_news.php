@@ -32,17 +32,22 @@ if (isset($_POST['valider'])) {
 
 <body>
     <header>
-    </header>
-    <form method="post" onsubmit="return Valider()" name="formulaire">
         <h1>Modifier une news</h1>
+    </header>
+
+    <hr>
+
+    <form method="post" onsubmit="return Valider()" name="formulaire">
         <label>Titre</label> </br>
-        <input type="text" value="<?php echo $_GET['titre'] ?>" name="titre"> </br>
+        <input class="conteneur" id="titre" type="text" value="<?php echo $_GET['titre'] ?>" name="titre"> </br>
 
         <label>Contenu</label> </br>
-        <textarea name="contenu" id="contenu" rows="40" cols="100"><?php echo $_GET['contenu'] ?></textarea> </br>
+        <textarea class="conteneur name=" contenu" id="contenu" rows="40" cols="100"><?php echo $_GET['contenu'] ?></textarea> </br>
 
-        <input type="submit" value="Validez" name="valider"> </br>
-        <input type="button" value="Retour" name="annuler" onclick="Annuler()"> </br>
+        <div class="bouton">
+            <input class="valid" type="submit" value="Validez" name="valider">
+            <input class="retour" type="button" value="Retour" name="annuler" onclick="Annuler()">
+        </div>
     </form>
 </body>
 
