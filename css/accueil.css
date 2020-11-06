@@ -1,6 +1,6 @@
 header {
-	background-color: darkorange;
-	height: 50px;
+	background-color: rgb(233, 105, 0);
+	height: 100px;
 	text-align: right;
 }
 
@@ -15,16 +15,35 @@ footer {
 
 body{
 	margin: 0;
+	background-color: #8F5C38;
 	background-repeat: no-repeat;
 	background-image: url('logo.jpg');
 	background-position: 100% 5%;
 	background-size: 5%;
 }
 
-div{
-	background-color: cornsilk;
+section {
+	display: flex;
+	flex-wrap: wrap;
 }
 
-.trier {
-	background-color: khaki;
-} 
+article { 
+	border : 2px inset #C09E73;
+	border-radius: 5px;
+	background-color: #F0DFAD;
+	height: 400px;
+	width: 600px;
+	margin: 10px;
+	padding: 10px
+}
+
+article:hover {
+	box-shadow: 5px 5px 5px #C09E73;
+	filter: brightness(110%);
+}
+
+/*
+.titre {
+	background-color: rgb(233, 105, 0);
+}
+*/

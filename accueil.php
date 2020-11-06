@@ -8,6 +8,7 @@
 
 <body>
     <header>
+        <h1>Bienvenue à l'accueil</h1>
         <?php
         include 'connexion.php';
         session_start();
@@ -32,8 +33,6 @@
     </header>
 
     <form method="POST">
-        <h1>Bienvenue à l'accueil</h1>
-		<div class = "trier">
         <label>Trier par thème</label> </br>
         <select name="themetri">
             <option value='0'>Tous les thèmes</option>
@@ -66,13 +65,45 @@
             ?>
         </select> </br> </br>
 
-        <input type="submit" value="Valider" name="valider"> <br/></br>
-		</div2>
-		<div>
-        <?php
+        <input type="submit" value="Valider" name="valider"> <br /></br>
+        <section>
+            <?php
 
-        if (isset($_POST['valider'])) {
-            if ($_POST['themetri'] == 0 && $_POST['datetri'] == 0) {
+            if (isset($_POST['valider'])) {
+                if ($_POST['themetri'] == 0 && $_POST['datetri'] == 0) {
+                    $maxnews = $objPdo->prepare("SELECT * FROM news");
+                    $maxnews->execute();
+
+                    foreach ($maxnews as $row) {
+                        $_SESSION['idnews'] = $row['idnews'];
+                        echo '<article>';
+                        include 'affiche_news.php';
+                        echo '</article>' . '</br> </br>';
+                    }
+                } else {
+                    if ($_POST['themetri'] == 0 && $_POST['datetri'] != 0) {
+                        $news = $objPdo->prepare("SELECT * FROM news WHERE datenews = :datetri");
+                        $news->bindValue(':datetri', $_POST['datetri'], PDO::PARAM_STR);
+                        $news->execute();
+                    } else if ($_POST['datetri'] == 0 && $_POST['themetri'] != 0) {
+                        $news = $objPdo->prepare("SELECT * FROM news WHERE idtheme = :themetri");
+                        $news->bindValue(':themetri', $_POST['themetri'], PDO::PARAM_INT);
+                        $news->execute();
+                    } else {
+                        $news = $objPdo->prepare("SELECT * FROM news WHERE idtheme = :themetri AND datenews = :datetri");
+                        $news->bindValue(':themetri', $_POST['themetri'], PDO::PARAM_INT);
+                        $news->bindValue(':datetri', $_POST['datetri'], PDO::PARAM_STR);
+                        $news->execute();
+                    }
+
+                    foreach ($news as $row) {
+                        $_SESSION['idnews'] = $row['idnews'];
+                        echo '<article>';
+                        include 'affiche_news.php';
+                        echo '</article>' . '</br> </br>';
+                    }
+                }
+            } else {
                 $maxnews = $objPdo->prepare("SELECT * FROM news");
                 $maxnews->execute();
 
@@ -82,42 +113,9 @@
                     include 'affiche_news.php';
                     echo '</article>' . '</br> </br>';
                 }
-            } else {
-                if ($_POST['themetri'] == 0 && $_POST['datetri'] != 0) {
-                    $news = $objPdo->prepare("SELECT * FROM news WHERE datenews = :datetri");
-                    $news->bindValue(':datetri', $_POST['datetri'], PDO::PARAM_STR);
-                    $news->execute();
-                } else if ($_POST['datetri'] == 0 && $_POST['themetri'] != 0) {
-                    $news = $objPdo->prepare("SELECT * FROM news WHERE idtheme = :themetri");
-                    $news->bindValue(':themetri', $_POST['themetri'], PDO::PARAM_INT);
-                    $news->execute();
-                } else {
-                    $news = $objPdo->prepare("SELECT * FROM news WHERE idtheme = :themetri AND datenews = :datetri");
-                    $news->bindValue(':themetri', $_POST['themetri'], PDO::PARAM_INT);
-                    $news->bindValue(':datetri', $_POST['datetri'], PDO::PARAM_STR);
-                    $news->execute();
-                }
-
-                foreach ($news as $row) {
-                    $_SESSION['idnews'] = $row['idnews'];
-                    echo '<article>';
-                    include 'affiche_news.php';
-                    echo '</article>' . '</br> </br>';
-                }
             }
-        } else {
-            $maxnews = $objPdo->prepare("SELECT * FROM news");
-            $maxnews->execute();
-
-            foreach ($maxnews as $row) {
-                $_SESSION['idnews'] = $row['idnews'];
-                echo '<article>';
-                include 'affiche_news.php';
-                echo '</article>' . '</br> </br>';
-            }
-        }
-        ?>
-		</div>
+            ?>
+        </section>
     </form>
 </body>
 
