@@ -1,14 +1,59 @@
+html {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 header{
 	background-color: darkorange;
-	height: 50px;
+	height: 100px;
 	margin: 0;
 }
 
-
 h1{
 	text-align: center;
+	padding-top: 25px;
+}
+
+body {
+	margin: 0;
+	background-color: #8F5C38
 }
 
 form{
-	margin-left: 5px;
+	text-align: center;
+}
+
+.conteneur {
+	border: 2px inset #C09E73;
+	border-radius: 5px;
+	margin-top: 5px;
+	margin-bottom: 10px;
+}
+
+label {
+	font-size: 20;
+}
+
+.classtheme {
+	display: flex;
+	align-items: flex-end;
+}
+
+.theme {
+	float: left;
+	margin-left: 550px;
+	margin-right: 50px;
+}
+
+.creertheme {
+	float: right;
+}
+
+select {
+	border: 2px inset #C09E73;
+	border-radius: 5px;
+	margin-top: 5px;
+}
+
+input, select, textarea {
+	background-color: #F0DFAD;
 }

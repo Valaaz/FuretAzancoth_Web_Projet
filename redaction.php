@@ -36,29 +36,31 @@ if (isset($_POST['valider'])) {
 
 <body>
     <header>
+        <h1>Créer une news</h1>
     </header>
     <form method="post" action="redaction.php" onsubmit="return Valider()" name="formulaire">
-        <h1>Créer une news</h1>
         <label>Titre</label> </br>
-        <input type="text" value="" name="titre"> </br>
+        <input class="conteneur" type="text" value="" name="titre"> </br>
 
         <label>Choisir un thème</label> </br>
-        <select name="choixtheme">
-            <option value=''></option>
+        <div class="classtheme">
+            <select class="theme" name="choixtheme">
+                <option value=''></option>
 
-            <?php
-            $query = $objPdo->prepare("SELECT * FROM theme");
-            $query->execute();
-            foreach ($query as $row) {
-                echo '<option value="' . $row['idtheme'] . '">' . $row['description'] . '</option>';
-            }
-            ?>
-        </select> </br> </br>
+                <?php
+                $query = $objPdo->prepare("SELECT * FROM theme");
+                $query->execute();
+                foreach ($query as $row) {
+                    echo '<option value="' . $row['idtheme'] . '">' . $row['description'] . '</option>';
+                }
+                ?>
+            </select> </br> </br>
 
-        <input type="button" value="Créer un nouveau thème" name="creertheme" onclick="CreerTheme()"> </br>
+            <input class="creertheme" type="button" value="Créer un nouveau thème" name="creertheme" onclick="CreerTheme()"> </br>
+        </div>
 
         <label>Contenu</label> </br>
-        <textarea name="contenu" id="contenu" rows="40" cols="100"></textarea> </br>
+        <textarea class="conteneur" name="contenu" id="contenu" rows="40" cols="100"></textarea> </br>
 
         <input type="submit" value="Validez" name="valider"> </br>
         <input type="button" value="Retour" name="annuler" onclick="Annuler()"> </br>
