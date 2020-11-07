@@ -1,6 +1,6 @@
 <head>
     <title>Mes news</title>
-    <link rel="stylesheet" href="css/mesnews.css" />
+    <link rel="stylesheet" href="../css/mesnews.css" />
 </head>
 
 <body>
@@ -13,7 +13,7 @@
 
     <section>
         <?php
-        include 'connexion.php';
+        include '../connexion/connexion.php';
         session_start();
 
         $mesnews = $objPdo->prepare("SELECT * FROM news WHERE idredacteur = :idredac");
@@ -23,7 +23,7 @@
         foreach ($mesnews as $row) {
             $_SESSION['idnews'] = $row['idnews'];
             echo '<article>';
-            include 'affiche_mesnews.php';
+            include './affiche_mesnews.php';
             echo '</article>' . '</br> </br>';
         }
         ?>
@@ -32,7 +32,7 @@
     <script language="javascript" type="text/javascript">
         function Annuler() {
             if (confirm("Souhaitez-vous revenir à l'accueil ?"))
-                window.location.href = "accueil.php"
+                window.location.href = "../affichage/accueil.php"
         }
     </script>
 </body>

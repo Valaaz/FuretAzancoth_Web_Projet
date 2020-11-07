@@ -1,5 +1,5 @@
 <?php
-include 'connexion.php';
+include '../connexion/connexion.php';
 
 session_start();
 
@@ -14,7 +14,7 @@ if (isset($_POST['valider'])) {
         if (!$pdostat->execute()) // Si le résultat de la requête est faux ou null, c'est qu'il y a eu un problème
             echo "<script>alert('Erreyr MySQL.')</script>";
         else
-            header('location:redaction.php');
+            header('location:./redaction.php');
     } else
         echo "<script>alert(Remplir les champs vides.')</script>";
 }
@@ -23,7 +23,7 @@ if (isset($_POST['valider'])) {
 
 <head>
     <title>Nouveau thème</title>
-    <link rel="stylesheet" href="css/creertheme.css" />
+    <link rel="stylesheet" href="../css/creertheme.css" />
 </head>
 
 <body>
@@ -47,7 +47,7 @@ if (isset($_POST['valider'])) {
 <script language="javascript" type="text/javascript">
     function Annuler() {
         if (confirm("Souhaitez-vous vous annuler la création d'un nouveau thème ?"))
-            window.location.href = "redaction.php"
+            window.location.href = "./redaction.php"
     }
 
     function Valider() {

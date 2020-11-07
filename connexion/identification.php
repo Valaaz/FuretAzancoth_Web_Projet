@@ -1,5 +1,5 @@
 <?php
-include 'connexion.php';
+include '../connexion/connexion.php';
 
 session_start();
 if (isset($_POST['valider'])) {
@@ -35,7 +35,7 @@ if (isset($_POST['valider'])) {
                     $_SESSION['nom'] = $row2['nom'];
                     $_SESSION['prenom'] = $row2['prenom'];
                 }
-                header('location:accueil.php');
+                header('location:../affichage/accueil.php');
                 exit();
             } else
                 echo "<script>alert('Mot de passe incorrect.')</script>";
@@ -50,7 +50,7 @@ if (isset($_POST['valider'])) {
 
 <head>
     <title>Identification</title>
-    <link rel="stylesheet" href="css/identification.css" />
+    <link rel="stylesheet" href="../css/identification.css" />
 </head>
 
 <body>
@@ -78,7 +78,7 @@ if (isset($_POST['valider'])) {
 <script language="javascript" type="text/javascript">
     function Annuler() {
         if (confirm("Souhaitez-vous revenir à l'accueil ?"))
-            window.location.href = "accueil.php"
+            window.location.href = "../affichage/accueil.php"
     }
 
     function Valider() {

@@ -1,5 +1,5 @@
 <?php
-include 'connexion.php';
+include '../connexion/connexion.php';
 
 $idnews = $_SESSION['idnews'];
 
@@ -28,15 +28,16 @@ $resultredac->execute();
 while ($row3 = $resultredac->fetch())
     $redacteur = $row3['pseudo'];
 
-echo '<div class="date">' . 'Rédigé le ' . $date . ' par ' . $redacteur . '</div>';
+echo '<div class="datenews">' . 'Rédigé le ' . $date . ' par ' . $redacteur . '</div>';
 
-echo '<div class="theme">' . '<h1>Thème :</h1>' . '</div>';
-echo  $theme . '<br>';
+echo '<h1 class="italic">Thème :</h1>';
+echo $theme . '<br>';
 
-echo '<div class="titre">' . '<h1>Titre :</h1>' . '</div>';
+echo '<h1 class="italic">Titre :</h1>';
 echo $titre . '<br>';
 
-echo '<div class="contenu">' . '<h1>News :</h1>' . '</div>';
+echo '<h1 class="italic">News :</h1>';
 echo '<textarea rows="10" cols="82" readonly>' . $contenu . '</textarea>' . '<br> <br>';
 
-echo '<div class="detail">' . '<a href="detail_news.php?idnews' . $idnews . '&titre=' . $titre . '&theme=' . $theme  . '&contenu=' . $contenu . '">Voir la news</a>' . '</div>';
+echo '<a class="modif" href="../news/modifier_news.php?idnews=' . $idnews . '&titre=' . $titre . '&contenu=' . $contenu . '"> Modifier </a>';
+echo '<a class="supp" onclick="return confirm(\'Voulez-vous vraiment supprimer cette news ?\')" href="../news/supprimer_news.php?idnews=' . $idnews . '"> Supprimer </a> <br>';

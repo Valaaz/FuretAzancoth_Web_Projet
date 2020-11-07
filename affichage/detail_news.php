@@ -1,13 +1,8 @@
-<?php
-
-
-?>
-
 <html>
 
 <head>
     <title>Voir une news</title>
-    <link rel="stylesheet" href="css/detail_news.css" />
+    <link rel="stylesheet" href="../css/detail_news.css" />
 </head>
 
 <body>
@@ -32,7 +27,7 @@
 <script language="javascript" type="text/javascript">
     function Annuler() {
         if (confirm("Souhaitez-vous retourner à l'accueil ?"))
-            window.location.href = "accueil.php"
+            window.location.href = "./accueil.php"
     }
 </script>
 

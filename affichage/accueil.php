@@ -3,7 +3,7 @@
 
 <head>
     <title>Accueil</title>
-    <link rel="stylesheet" href="css/accueil.css" />
+    <link rel="stylesheet" href="../css/accueil.css" />
 </head>
 
 <body>
@@ -11,7 +11,7 @@
         <h1>Accueil</h1>
         <div class="liens">
             <?php
-            include 'connexion.php';
+            include '../connexion/connexion.php';
             session_start();
 
             $co = array();
@@ -19,8 +19,8 @@
             if (isset($_SESSION['isLogged'])) {
                 $co = '<a class="gauche" id="deco" href="#" onclick="MessageAlerte()"> Se deconnecter </a> <br>';
                 echo $co;
-                echo '<a class="droite" id="redac" href="redaction.php"> Redacteur </a> <br>';
-                echo '<a class="droite" href="mesnews.php"> Mes news </a>';
+                echo '<a class="droite" id="redac" href="../news/redaction.php"> Redacteur </a> <br>';
+                echo '<a class="droite" href="./mesnews.php"> Mes news </a>';
                 // Affichage des infos de l'utilisateur connecté
                 echo '<div class="identite">';
                 echo 'Connecté : ' . $_SESSION['pseudo'] . '<br>';
@@ -28,8 +28,8 @@
                 echo 'Mail : ' . $_SESSION['mail'];
                 echo '</div>';
             } else if (isset($_SESSION['isLogged']) == false) {
-                $co = '<a class="gauche" id="co" href="identification.php"> Se connecter </a> <br>';
-                echo '<a class="droite" href="creercompte.php"> Creer un compte </a> <br>';
+                $co = '<a class="gauche" id="co" href="../connexion/identification.php"> Se connecter </a> <br>';
+                echo '<a class="droite" href="../connexion/creercompte.php"> Creer un compte </a> <br>';
                 echo $co;
             }
             ?>
@@ -82,7 +82,7 @@
                     foreach ($maxnews as $row) {
                         $_SESSION['idnews'] = $row['idnews'];
                         echo '<article>';
-                        include 'affiche_news.php';
+                        include './affiche_news.php';
                         echo '</article>' . '</br> </br>';
                     }
                 } else {
@@ -104,7 +104,7 @@
                     foreach ($news as $row) {
                         $_SESSION['idnews'] = $row['idnews'];
                         echo '<article>';
-                        include 'affiche_news.php';
+                        include './affiche_news.php';
                         echo '</article>' . '</br> </br>';
                     }
                 }
@@ -115,7 +115,7 @@
                 foreach ($maxnews as $row) {
                     $_SESSION['idnews'] = $row['idnews'];
                     echo '<article>';
-                    include 'affiche_news.php';
+                    include './affiche_news.php';
                     echo '</article>' . '</br> </br>';
                 }
             }
@@ -127,7 +127,7 @@
 <script language="javascript" type="text/javascript">
     function MessageAlerte() {
         if (confirm("Souhaitez-vous vous deconnecter ?"))
-            window.location.href = "deconnexion.php"
+            window.location.href = "../connexion/deconnexion.php"
     }
 </script>
 

@@ -1,5 +1,5 @@
 <?php
-include 'connexion.php';
+include '../connexion/connexion.php';
 
 session_start();
 
@@ -17,7 +17,7 @@ if (isset($_POST['valider'])) {
         if (!$modifnews->execute())  // Si le résultat de la requête est faux ou null, c'est qu'il y a eu un problème
             echo "<script>alert('Erreur MySQL.')</script>";
         else
-            header('location:mesnews.php');
+            header('location:../affichage/mesnews.php');
     } else
         echo "<script>alert('Remplir les champs vides.')</script>";
 }
@@ -27,7 +27,7 @@ if (isset($_POST['valider'])) {
 
 <head>
     <title>Modifier une news</title>
-    <link rel="stylesheet" href="css/redaction.css" />
+    <link rel="stylesheet" href="../css/redaction.css" />
 </head>
 
 <body>
@@ -55,7 +55,7 @@ if (isset($_POST['valider'])) {
 <script language="javascript" type="text/javascript">
     function Annuler() {
         if (confirm("Souhaitez-vous vous annuler la rédaction en cours ?"))
-            window.location.href = "mesnews.php"
+            window.location.href = "../affichage/mesnews.php"
     }
 
     function Valider() {

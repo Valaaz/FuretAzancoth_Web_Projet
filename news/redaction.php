@@ -1,5 +1,5 @@
 <?php
-include 'connexion.php';
+include '../connexion/connexion.php';
 
 session_start();
 
@@ -20,7 +20,7 @@ if (isset($_POST['valider'])) {
         if (!$pdostat->execute()) // Si le résultat de la requête est faux ou null, c'est qu'il y a eu un problème
             echo "<script>alert('Erreur MySQL.')</script>";
         else
-            header('location:accueil.php');
+            header('location:../affichage/accueil.php');
     } else
         echo "<script>alert('Remplir les champs vides.')</script>";
 }
@@ -30,7 +30,7 @@ if (isset($_POST['valider'])) {
 
 <head>
     <title>Rédaction</title>
-    <link rel="stylesheet" href="css/redaction.css" />
+    <link rel="stylesheet" href="../css/redaction.css" />
 </head>
 
 <body>
@@ -73,12 +73,12 @@ if (isset($_POST['valider'])) {
 <script language="javascript" type="text/javascript">
     function CreerTheme() {
         if (confirm("Voulez-vous créer un nouveau thème ?"))
-            window.location.href = "creertheme.php"
+            window.location.href = "./creertheme.php"
     }
 
     function Annuler() {
         if (confirm("Souhaitez-vous vous annuler la rédaction en cours ?"))
-            window.location.href = "accueil.php"
+            window.location.href = "../affichage/accueil.php"
     }
 
     function Valider() {

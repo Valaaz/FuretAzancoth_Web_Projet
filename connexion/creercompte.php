@@ -1,6 +1,6 @@
 <?php
 
-include 'connexion.php';
+include './connexion.php';
 
 $query = $objPdo->prepare("SELECT * FROM redacteur");
 $query->execute();
@@ -44,6 +44,7 @@ if (isset($_POST['valider'])) {
                         session_start();
                     // Mise en SESSION
                     $_SESSION['isLogged'] = true;
+                    $_SESSION['id'] = $row['idredacteur'];
                     $_SESSION['pseudo'] = $pseudo;
                     $_SESSION['mail'] = $mail;
                     $_SESSION['nom'] = $nom;
@@ -51,7 +52,7 @@ if (isset($_POST['valider'])) {
 
                     // ATTENTION ! ON NE MET JAMAIS LE MOT DE PASSE EN SESSION !!
                     // on redirige vers l'espace membre
-                    header('location:accueil.php');
+                    header('location:../affichage/accueil.php');
                     exit();
                 }
             } else
@@ -66,7 +67,7 @@ if (isset($_POST['valider'])) {
 
 <head>
     <title>Création de compte</title>
-    <link rel="stylesheet" href="css/creercompte.css" />
+    <link rel="stylesheet" href="../css/creercompte.css" />
 </head>
 
 <body>
@@ -106,7 +107,7 @@ if (isset($_POST['valider'])) {
 <script language="javascript" type="text/javascript">
     function Annuler() {
         if (confirm("Souhaitez-vous revenir à l'accueil ?"))
-            window.location.href = "accueil.php"
+            window.location.href = "../affichage/accueil.php"
     }
 
     function Valider() {
