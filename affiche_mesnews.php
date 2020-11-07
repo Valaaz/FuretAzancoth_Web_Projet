@@ -42,4 +42,4 @@ echo '<textarea rows="10" cols="82">' . $contenu . '</textarea>' . '<br> <br>';
 echo '<div class="redac">' . $redacteur . '</div> <br>';
 
 echo '<a class="modif" href="modifier_news.php?idnews=' . $idnews . '&titre=' . $titre . '&contenu=' . $contenu . '"> Modifier </a>';
-echo '<a class="supp" href="supprimer_news.php?idnews=' . $idnews . '"> Supprimer </a> <br>';
+echo '<a class="supp" onclick="return confirm(\'Voulez-vous vraiment supprimer cette news ?\')" href="supprimer_news.php?idnews=' . $idnews . '"> Supprimer </a> <br>';
