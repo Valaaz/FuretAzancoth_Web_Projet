@@ -8,7 +8,8 @@
 
 <body>
     <header>
-        <h1>Bienvenue à l'accueil</h1>
+      	   <h1>Bienvenue à l'accueil</h1>
+		   <div class="liens">
         <?php
         include 'connexion.php';
         session_start();
@@ -30,6 +31,7 @@
             echo $co;
         }
         ?>
+		</div>
     </header>
 
     <form method="POST">

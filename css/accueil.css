@@ -3,6 +3,10 @@ header {
 	height: 100px;
 	margin: 0;
 	text-align: right;
+	padding-bottom: 50px;
+	background-repeat: no-repeat;
+	background-image: url('logo.jpg');
+	background-size: 8%;
 }
 
 footer {
@@ -17,10 +21,8 @@ footer {
 body{
 	margin: 0;
 	background-color: #8F5C38;
-	background-repeat: no-repeat;
-	background-image: url('logo.jpg');
+	
 	background-position: 100% 5%;
-	background-size: 5%;
 }
 
 section {
@@ -61,4 +63,3 @@ textarea {
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	font-style: italic;
 }
-
