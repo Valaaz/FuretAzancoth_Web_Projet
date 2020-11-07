@@ -22,7 +22,7 @@ if (isset($_POST['valider'])) {
 <html>
 
 <head>
-    <title>Rédaction</title>
+    <title>Nouveau thème</title>
     <link rel="stylesheet" href="css/creertheme.css" />
 </head>
 
@@ -54,7 +54,7 @@ if (isset($_POST['valider'])) {
         var theme = document.forms['formulaire'].theme;
         var ok = true;
 
-        if (!titre.value.replace(/\s+/, '').length) {
+        if (!theme.value.replace(/\s+/, '').length) {
             alert("Thème vide");
             ok = false;
             ChangerCouleur(theme);
