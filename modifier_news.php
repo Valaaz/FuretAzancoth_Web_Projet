@@ -85,7 +85,8 @@ if (isset($_POST['valider'])) {
     }
 
     function ReinitialiserCouleur(objet) {
-        objet.setAttribute('style', 'border-color: black;');
+        objet.setAttribute('style', 'border: 2 px solid# C09E73;');
+        objet.setAttribute('style', 'border-radius: 5 px;')
     }
 </script>
 
