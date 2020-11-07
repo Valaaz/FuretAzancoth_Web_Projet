@@ -51,14 +51,21 @@ if (isset($_POST['valider'])) {
 
 <body>
     <header>
+        <h1>Identifiez vous</h1>
     </header>
+
+    <hr>
+
     <form method="post" action="identification.php" onsubmit="return Valider()" name="formulaire">
         <label>Identifiant</label> </br>
         <input type="text" value="" name="utilisateur"> </br>
         <label>Mot de passe</label> </br>
         <input type="text" value="" name="mdp"> </br> </br>
-        <input type="submit" value="Validez" name="valider"> <br>
-        <input type="button" value="Retour" name="annuler" onclick="Annuler()"> </br>
+
+        <div class="bouton">
+            <input class="valid" type="submit" value="Validez" name="valider"> <br>
+            <input class="retour" type="button" value="Retour" name="annuler" onclick="Annuler()"> </br>
+        </div>
         <a href="creercompte.php"> Créer un compte </a>
     </form>
 </body>
