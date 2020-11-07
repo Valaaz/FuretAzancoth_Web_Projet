@@ -8,34 +8,38 @@
 
 <body>
     <header>
-      	   <h1>Bienvenue à l'accueil</h1>
-		   <div class="liens">
-        <?php
-        include 'connexion.php';
-        session_start();
+        <h1>Accueil</h1>
+        <div class="liens">
+            <?php
+            include 'connexion.php';
+            session_start();
 
-        $co = array();
-        $re = array();
-        if (isset($_SESSION['isLogged'])) {
-            $co = '<a href="#" onclick="MessageAlerte()"> Se deconnecter </a> <br>';
-            echo $co;
-            echo '<a href="redaction.php"> Redacteur </a> <br>';
-            echo '<a href="mesnews.php"> Mes news </a> <br>';
-            // Affichage du pseudo de l'utilisateur connecté
-            echo 'Connecté : ' . $_SESSION['pseudo'] . '<br>';
-            // Affichage du mail de l'utilisateur connecté
-            echo 'Mail : ' . $_SESSION['mail'];
-        } else if (isset($_SESSION['isLogged']) == false) {
-            $co = '<a href="identification.php"> Se connecter </a> <br>';
-            echo '<a href="creercompte.php"> Creer un compte </a> <br>';
-            echo $co;
-        }
-        ?>
-		</div>
+            $co = array();
+            $re = array();
+            if (isset($_SESSION['isLogged'])) {
+                $co = '<a class="gauche" id="deco" href="#" onclick="MessageAlerte()"> Se deconnecter </a> <br>';
+                echo $co;
+                echo '<a class="droite" id="redac" href="redaction.php"> Redacteur </a> <br>';
+                echo '<a class="droite" href="mesnews.php"> Mes news </a>';
+                // Affichage des infos de l'utilisateur connecté
+                echo '<div class="identite">';
+                echo 'Connecté : ' . $_SESSION['pseudo'] . '<br>';
+                echo $_SESSION['nom'] . ' ' . $_SESSION['prenom'] . '<br>';
+                echo 'Mail : ' . $_SESSION['mail'];
+                echo '</div>';
+            } else if (isset($_SESSION['isLogged']) == false) {
+                $co = '<a class="gauche" id="co" href="identification.php"> Se connecter </a> <br>';
+                echo '<a class="droite" href="creercompte.php"> Creer un compte </a> <br>';
+                echo $co;
+            }
+            ?>
+        </div>
     </header>
 
+    <hr>
+
     <form method="POST">
-        <label>Trier par thème</label> </br>
+        <label class="tri">Trier par thème</label> </br>
         <select name="themetri">
             <option value='0'>Tous les thèmes</option>
 
@@ -51,7 +55,7 @@
             ?>
         </select> </br> </br>
 
-        <label>Trier par date</label> </br>
+        <label class="tri">Trier par date</label> </br>
         <select name="datetri">
             <option value='0'>Toutes les dates</option>
 

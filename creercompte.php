@@ -46,6 +46,8 @@ if (isset($_POST['valider'])) {
                     $_SESSION['isLogged'] = true;
                     $_SESSION['pseudo'] = $pseudo;
                     $_SESSION['mail'] = $mail;
+                    $_SESSION['nom'] = $nom;
+                    $_SESSION['prenom'] = $prenom;
 
                     // ATTENTION ! ON NE MET JAMAIS LE MOT DE PASSE EN SESSION !!
                     // on redirige vers l'espace membre

@@ -26,10 +26,14 @@ if (isset($_POST['valider'])) {
                     $_SESSION['id'] = $row['idredacteur'];
                     $_SESSION['pseudo'] = $row['pseudo'];
                     $_SESSION['mail'] = $row['adressemail'];
+                    $_SESSION['nom'] = $row['nom'];
+                    $_SESSION['prenom'] = $row['prenom'];
                 } else {
                     $_SESSION['id'] = $row2['idredacteur'];
                     $_SESSION['pseudo'] = $row2['pseudo'];
                     $_SESSION['mail'] = $row2['adressemail'];
+                    $_SESSION['nom'] = $row2['nom'];
+                    $_SESSION['prenom'] = $row2['prenom'];
                 }
                 header('location:accueil.php');
                 exit();
