@@ -94,7 +94,7 @@ if (isset($_POST['valider'])) {
         <input type="text" value="" name="mdp2"> </br> </br>
 
         <div class="bouton">
-            <input class="valid" type="submit" value="Validez" name="valider">
+            <input class="valid" type="submit" value="Valider" name="valider">
             <input class="retour" type="button" value="Retour" name="annuler" onclick="Annuler()">
         </div>
     </form>

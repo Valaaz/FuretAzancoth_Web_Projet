@@ -34,7 +34,7 @@ if (isset($_POST['valider'])) {
         <label>Ecrivez le titre de votre nouveau thème</label> </br>
         <input type="text" value="" name="theme"> </br>
 
-        <input type="submit" value="Validez" name="valider">
+        <input type="submit" value="Valider" name="valider">
     </form>
 </body>
 
