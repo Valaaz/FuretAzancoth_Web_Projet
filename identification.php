@@ -64,7 +64,8 @@ if (isset($_POST['valider'])) {
         <label>Identifiant</label> </br>
         <input type="text" value="" name="utilisateur"> </br>
         <label>Mot de passe</label> </br>
-        <input type="text" value="" name="mdp"> </br> </br>
+        <input type="password" value="" name="mdp" id="mdp">
+        <input type="checkbox" onclick="VueMdp()"> Voir mot de passe </br>
 
         <div class="bouton">
             <input class="valid" type="submit" value="Valider" name="valider">
@@ -108,6 +109,15 @@ if (isset($_POST['valider'])) {
 
     function ReinitialiserCouleur(objet) {
         objet.setAttribute('style', 'border-color: black;');
+    }
+
+    function VueMdp() {
+        var mdp = document.getElementById("mdp");
+        if (mdp.type === "password") {
+            mdp.type = "text";
+        } else {
+            mdp.type = "password";
+        }
     }
 </script>
 

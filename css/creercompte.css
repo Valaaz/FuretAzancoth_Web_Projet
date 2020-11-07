@@ -37,7 +37,7 @@ form {
 	width: 200px;
 }
 
-input[type="text"] {
+input[type="text"], input[type="password"] {
 	background-color: #F0DFAD;
 	border: 2px inset #C09E73;
 	border-radius: 5px;
@@ -45,6 +45,10 @@ input[type="text"] {
 	margin-bottom: 10px;
 	height: 30px;
 	width: 200px;
+}
+
+input[type="checkbox"] {
+	margin-bottom: 30px;
 }
 
 .bouton {
