@@ -64,7 +64,7 @@ if (isset($_POST['valider'])) {
         <label>Identifiant</label> </br>
         <input type="text" value="" name="utilisateur"> </br>
         <label>Mot de passe</label> </br>
-        <input type="password" value="" name="mdp" id="mdp">
+        <input type="password" value="" name="mdp" id="mdp" autocomplete="off">
         <input type="checkbox" onclick="VueMdp()"> Voir mot de passe </br>
 
         <div class="bouton">

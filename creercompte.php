@@ -90,10 +90,10 @@ if (isset($_POST['valider'])) {
         <input type="text" value="" name="mail"> </br>
 
         <label>Mot de passe</label> </br>
-        <input type="password" value="" name="mdp" id="mdp"> </br>
+        <input type="password" value="" name="mdp" id="mdp" autocomplete="off"> </br>
 
         <label>Confirmation mot de passe</label> </br>
-        <input type="password" value="" name="mdp2" id="mdp2"> </br>
+        <input type="password" value="" name="mdp2" id="mdp2" autocomplete="off"> </br>
         <input type="checkbox" onclick="VueMdp()"> Voir mot de passe </br>
 
         <div class="bouton">
