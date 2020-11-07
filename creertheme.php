@@ -3,7 +3,6 @@ include 'connexion.php';
 
 session_start();
 
-$err_theme = array();
 if (isset($_POST['valider'])) {
     if (!empty($_POST['theme'])) {
 
@@ -12,30 +11,66 @@ if (isset($_POST['valider'])) {
         $pdostat = $objPdo->prepare("INSERT INTO `theme`(`description`) VALUES (:theme);");
         $pdostat->bindvalue(':theme', $theme, PDO::PARAM_STR);
 
-        if (!$pdostat->execute()) { // Si le résultat de la requête est faux ou null, c'est qu'il y a eu un problème
-            $err_theme[] = 'Erreur MySQL.';
-        } else {
-            $err_theme[] = 'Thème créé';
+        if (!$pdostat->execute()) // Si le résultat de la requête est faux ou null, c'est qu'il y a eu un problème
+            echo "<script>alert('Erreyr MySQL.')</script>";
+        else
             header('location:redaction.php');
-        }
-    } else {
-        $err_theme[] = 'Remplir les champs vides';
-    }
+    } else
+        echo "<script>alert(Remplir les champs vides.')</script>";
 }
 ?>
 <html>
 
+<head>
+    <title>Rédaction</title>
+    <link rel="stylesheet" href="css/creertheme.css" />
+</head>
+
 <body>
-    <form method="post" action="creertheme.php">
-        <?php if (!empty($err_theme)) { ?>
-            <div class="error"><?php echo implode('<br/>', $err_theme); ?></div>
-        <?php     } ?>
+    <header>
         <h1>Créer un theme</h1>
+    </header>
+
+    <hr>
+
+    <form method="post" action="creertheme.php" onsubmit="return Valider()" name="formulaire">
         <label>Ecrivez le titre de votre nouveau thème</label> </br>
         <input type="text" value="" name="theme"> </br>
 
-        <input type="submit" value="Valider" name="valider">
+        <div class="bouton">
+            <input class="valid" type="submit" value="Valider" name="valider">
+            <input class="retour" type="button" value="Retour" name="annuler" onclick="Annuler()">
+        </div>
     </form>
 </body>
+
+<script language="javascript" type="text/javascript">
+    function Annuler() {
+        if (confirm("Souhaitez-vous vous annuler la création d'un nouveau thème ?"))
+            window.location.href = "redaction.php"
+    }
+
+    function Valider() {
+        var theme = document.forms['formulaire'].theme;
+        var ok = true;
+
+        if (!titre.value.replace(/\s+/, '').length) {
+            alert("Thème vide");
+            ok = false;
+            ChangerCouleur(theme);
+        } else
+            ReinitialiserCouleur(theme);
+
+        return ok;
+    }
+
+    function ChangerCouleur(objet) {
+        objet.setAttribute('style', 'border: 2px solid red;');
+    }
+
+    function ReinitialiserCouleur(objet) {
+        objet.setAttribute('style', 'border-color: black;');
+    }
+</script>
 
 </html>

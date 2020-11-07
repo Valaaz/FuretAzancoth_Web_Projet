@@ -3,7 +3,6 @@ include 'connexion.php';
 
 session_start();
 
-$err_news = array();
 if (isset($_POST['valider'])) {
     if (!empty($_POST['titre']) && !empty($_POST['choixtheme']) && !empty($_POST['contenu'])) {
 
