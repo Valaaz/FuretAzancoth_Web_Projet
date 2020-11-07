@@ -69,9 +69,12 @@ if (isset($_POST['valider'])) {
 
 <body>
     <header>
+        <h1>Création d'un compte rédacteur</h1>
     </header>
+
+    <hr>
+
     <form method="post" action="creercompte.php" onsubmit="return Valider()" name="formulaire">
-        <h1>Créer un compte</h1>
         <label>Nom</label> </br>
         <input type="text" value="" name="nom"> </br>
 
@@ -90,8 +93,10 @@ if (isset($_POST['valider'])) {
         <label>Confirmation mot de passe</label> </br>
         <input type="text" value="" name="mdp2"> </br> </br>
 
-        <input type="submit" value="Validez" name="valider">
-        <input type="button" value="Retour" name="annuler" onclick="Annuler()"> </br>
+        <div class="bouton">
+            <input class="valid" type="submit" value="Validez" name="valider">
+            <input class="retour" type="button" value="Retour" name="annuler" onclick="Annuler()">
+        </div>
     </form>
 </body>
 

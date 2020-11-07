@@ -63,8 +63,8 @@ if (isset($_POST['valider'])) {
         <input type="text" value="" name="mdp"> </br> </br>
 
         <div class="bouton">
-            <input class="valid" type="submit" value="Validez" name="valider"> <br>
-            <input class="retour" type="button" value="Retour" name="annuler" onclick="Annuler()"> </br>
+            <input class="valid" type="submit" value="Validez" name="valider">
+            <input class="retour" type="button" value="Retour" name="annuler" onclick="Annuler()">
         </div>
         <a href="creercompte.php"> Créer un compte </a>
     </form>
