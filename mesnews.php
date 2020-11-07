@@ -9,6 +9,8 @@
         <a class="retour" href="#" onclick="Annuler()"> Retour à l'accueil </a> </br>
     </header>
 
+    <hr>
+
     <section>
         <?php
         include 'connexion.php';

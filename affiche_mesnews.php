@@ -30,13 +30,13 @@ while ($row3 = $resultredac->fetch())
 
 echo '<div class="datenews">' . 'Rédigé le ' . $date . '</div>';
 
-echo '<h1>Thème :</h1>';
-echo  $theme . '<br>';
+echo '<h1 class="italic">Thème :</h1>';
+echo $theme . '<br>';
 
-echo '<h1>Titre :</h1>';
+echo '<h1 class="italic">Titre :</h1>';
 echo $titre . '<br>';
 
-echo '<h1>News :</h1>';
+echo '<h1 class="italic">News :</h1>';
 echo '<textarea rows="10" cols="82">' . $contenu . '</textarea>' . '<br> <br>';
 
 echo '<div class="redac">' . $redacteur . '</div> <br>';
