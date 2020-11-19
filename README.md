@@ -1,3 +1,4 @@
 # FuretAzancoth_Web_Projet
 
-An IT project with HTML, PHP, CSS, JS, Ajax..
+An IT project with HTML, PHP, CSS and JS.
+Remain a bug to fix
